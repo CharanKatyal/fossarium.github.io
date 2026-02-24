@@ -9,25 +9,51 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-    <header>
-        <h1>Snake</h1>
-        <p><a href="../../index.html">← Back to Home</a></p>
-    </header>
-    <main>
-        <div id="game-container">
-            <div id="score-board">Score: <span id="score">0</span> | High Score: <span id="high-score">0</span></div>
-            <canvas id="snakeGame" width="400" height="400"></canvas>
-            <div id="controls">
-                <p>Use <b>Arrow Keys</b> or <b>WASD</b> to move.</p>
-                <button id="start-btn">Start / Restart</button>
+<body class="game-body">
+    <script>
+        const savedTheme = localStorage.getItem('spectrum-theme');
+        if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.classList.add('light-theme');
+        }
+    </script>
+    <div class="app-container game-container-wrapper">
+        <a href="../../index.html" class="back-button">&larr; Back to Spectrum</a>
+
+        <div class="game-header">
+            <div class="game-title">
+                <h1>Snake</h1>
+            </div>
+            <div class="score-container">
+                <div class="score-box">
+                    <span class="score-label">SCORE</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="score-box">
+                    <span class="score-label">BEST</span>
+                    <span id="high-score">0</span>
+                </div>
             </div>
         </div>
-    </main>
-    <footer>
-        <p>Credit - The Spectrum Project</p>
-        <p style="font-size: 0.8rem; margin-top: 5px;">FOSS and built by Spectrum with love in 2026</p>
-    </footer>
+
+        <div class="game-controls" style="justify-content: center;">
+            <button id="start-btn" class="primary-btn">Start / Restart</button>
+        </div>
+
+        <div class="game-board-container"
+            style="display: flex; justify-content: center; align-items: center; background: transparent; box-shadow: none; border: none; padding: 0;">
+            <canvas id="snakeGame" width="400" height="400"></canvas>
+        </div>
+
+        <div class="instructions" style="text-align: center; color: var(--text-muted); margin-top: 15px;">
+            <p>Use <b>Arrow Keys</b> or <b>WASD</b> to move.</p>
+        </div>
+
+        <div
+            style="text-align: center; margin-top: 30px; font-family: 'Inter', sans-serif; color: var(--text-muted); font-size: 0.9rem;">
+            Credit - The Spectrum Project
+            <p style="font-size: 0.8rem; margin-top: 5px;">FOSS and built by Spectrum with love in 2026</p>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 

@@ -1,46 +1,110 @@
-#game-container {
+.game-body {
+    display: flex;
+    justify-content: center;
+    background-color: var(--bg-color);
+}
+
+.game-container-wrapper {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.back-button {
+    display: inline-block;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.back-button:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+:root.light-theme .back-button:hover {
+    color: #000;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.game-title h1 {
+    font-size: 2.2rem;
+    margin: 0;
+}
+
+.score-container {
+    display: flex;
+    gap: 10px;
+}
+
+.score-box {
+    background: var(--card-bg);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    min-width: 70px;
 }
 
-#score-board {
+.score-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 700;
+}
+
+#score,
+#high-score {
     font-size: 1.5rem;
-    font-weight: bold;
-    color: #0056b3;
+    font-weight: 700;
+    color: var(--text-color);
 }
 
-canvas {
-    background-color: #222;
-    border: 4px solid #0056b3;
+.game-controls {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.primary-btn {
+    background: var(--gradient-8);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 65, 108, 0.6);
+}
+
+canvas#snakeGame {
+    background-color: rgba(22, 27, 34, 0.6);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
     width: 100%;
-    max-width: 80vh;
+    max-width: 60vh;
     height: auto;
     aspect-ratio: 1 / 1;
 }
 
-#controls {
-    text-align: center;
-}
-
-#start-btn {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-#start-btn:hover {
-    background-color: #0056b3;
-}
-
-p b {
-    color: #0056b3;
+:root.light-theme canvas#snakeGame {
+    background-color: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }

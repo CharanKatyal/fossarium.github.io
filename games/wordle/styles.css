@@ -77,16 +77,18 @@
     grid-template-rows: repeat(6, 1fr);
     grid-template-columns: repeat(5, 1fr);
     gap: 5px;
-    width: 350px;
-    max-width: 100%;
+    width: min(350px, 90vw);
+    max-height: 50vh;
     padding: 10px;
+    margin: 0 auto;
 }
 
 .tile {
     width: 100%;
     aspect-ratio: 1 / 1;
+    max-height: 8vh;
     border: 2px solid var(--card-border);
-    font-size: 2rem;
+    font-size: min(2rem, 5vh);
     font-weight: 700;
     display: flex;
     justify-content: center;
@@ -170,7 +172,7 @@
     border: 0;
     padding: 0;
     margin: 0;
-    height: 58px;
+    height: min(58px, 8vh);
     border-radius: 4px;
     cursor: pointer;
     background-color: #818384;
@@ -180,7 +182,7 @@
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: min(0.85rem, 3vmin);
     transition: transform 0.1s;
 }
 

@@ -82,33 +82,42 @@ function draw() {
     }
 
     // Clear canvas
-    ctx.fillStyle = '#222';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     // Draw food
-    ctx.fillStyle = '#ff4757';
-    ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
+    ctx.fillStyle = '#ff416c';
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = '#ff416c';
+    ctx.beginPath();
+    ctx.roundRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2, 4);
+    ctx.fill();
+    ctx.shadowBlur = 0; // reset
 
     // Draw snake
-    ctx.fillStyle = '#2ed573';
     snake.forEach((segment, index) => {
-        if (index === 0) ctx.fillStyle = '#7bed9f'; // Head is lighter
-        else ctx.fillStyle = '#2ed573';
-        ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
+        if (index === 0) {
+            ctx.fillStyle = '#00b09b'; // Head
+        } else {
+            ctx.fillStyle = '#38ef7d'; // Body
+        }
+        ctx.beginPath();
+        ctx.roundRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2, 4);
+        ctx.fill();
     });
 }
 
 function gameOver() {
     clearInterval(gameLoop);
     isRunning = false;
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+    ctx.fillStyle = 'rgba(13, 17, 23, 0.85)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'white';
-    ctx.font = '30px Arial';
+    ctx.font = 'bold 30px Inter, Arial';
     ctx.textAlign = 'center';
     ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
-    ctx.font = '20px Arial';
-    ctx.fillText('Press Start to Try Again', canvas.width / 2, canvas.height / 2 + 40);
+    ctx.font = '16px Inter, Arial';
+    ctx.fillStyle = '#8b949e';
+    ctx.fillText('Press Start / Restart to Try Again', canvas.width / 2, canvas.height / 2 + 40);
 }
 
 window.addEventListener('keydown', e => {
@@ -140,11 +149,12 @@ startBtn.addEventListener('click', () => {
     initGame();
 });
 
-ctx.fillStyle = '#222';
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-ctx.fillStyle = 'white';
-ctx.font = '20px Arial';
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+ctx.fillStyle = 'var(--text-color)';
+ctx.font = 'bold 20px Inter, Arial';
 ctx.textAlign = 'center';
+// Use a neutral gray if var fails on canvas without computed style
+ctx.fillStyle = '#8b949e';
 ctx.fillText('Click Start to Play', canvas.width / 2, canvas.height / 2);
 
 window.addEventListener("keydown", function (e) {

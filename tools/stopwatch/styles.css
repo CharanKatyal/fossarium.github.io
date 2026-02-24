@@ -62,10 +62,10 @@
 
 .time-display {
     font-family: 'Space Mono', monospace;
-    font-size: 4rem;
+    font-size: min(4rem, 15vw);
     font-weight: 700;
     color: var(--text-color);
-    margin-bottom: 30px;
+    margin-bottom: min(30px, 4vh);
     display: flex;
     align-items: baseline;
     justify-content: center;
@@ -90,7 +90,7 @@
 .controls {
     display: flex;
     gap: 15px;
-    margin-bottom: 30px;
+    margin-bottom: min(30px, 4vh);
     width: 100%;
     justify-content: center;
 }
@@ -179,7 +179,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    max-height: 250px;
+    max-height: 35vh;
     overflow-y: auto;
 }
 

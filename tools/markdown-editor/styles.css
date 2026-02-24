@@ -54,7 +54,8 @@
     display: flex;
     gap: 20px;
     height: 70vh;
-    min-height: 500px;
+    min-height: 400px;
+    max-height: 800px;
 }
 
 .editor-pane,
