@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to JSON - Spectrum</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</head>
+
+<body class="game-body">
+    <script>const s = localStorage.getItem('spectrum-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+    <div class="app-container tool-container-wrapper"><a href="../../index.html" class="back-button">&larr; Back to
+            Spectrum</a>
+        <div class="tool-header">
+            <h1>CSV to JSON</h1>
+            <p class="tool-subtitle">Convert CSV data into JSON arrays.</p>
+        </div>
+        <div class="actions-bar"><button id="convert-btn" class="action-btn primary"><ion-icon
+                    name="swap-horizontal-outline"></ion-icon> Convert</button><button id="copy-btn"
+                class="action-btn secondary"><ion-icon name="copy-outline"></ion-icon> Copy</button></div>
+        <div class="editor-layout">
+            <div class="editor-pane"><label>CSV Input</label><textarea id="csv-input"
+                    placeholder="name,age,city&#10;Alice,30,NYC&#10;Bob,25,LA"></textarea></div>
+            <div class="editor-pane"><label>JSON Output</label><textarea id="json-output" readonly></textarea></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

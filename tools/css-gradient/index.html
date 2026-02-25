@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Gradient Generator - Spectrum</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="game-body">
+    <script>const s = localStorage.getItem('spectrum-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+    <div class="app-container tool-container-wrapper">
+        <a href="../../index.html" class="back-button">&larr; Back to Spectrum</a>
+        <div class="tool-header">
+            <h1>Gradient Generator</h1>
+            <p class="tool-subtitle">Create beautiful CSS gradients.</p>
+        </div>
+        <div class="editor">
+            <div class="controls">
+                <div class="ctrl"><label>Type</label><select id="type">
+                        <option>linear</option>
+                        <option>radial</option>
+                    </select></div>
+                <div class="ctrl"><label>Angle <span id="angle-val">135</span>°</label><input type="range" id="angle"
+                        min="0" max="360" value="135"></div>
+                <div class="ctrl"><label>Color 1</label><input type="color" id="c1" value="#7F00FF"></div>
+                <div class="ctrl"><label>Color 2</label><input type="color" id="c2" value="#E100FF"></div>
+            </div>
+            <div class="preview" id="preview"></div>
+        </div>
+        <div class="code-output"><code id="css-output"></code><button id="copy-btn" class="action-btn">Copy CSS</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+let timeLeft = 25 * 60, timer = null, isWork = true, sessions = 0;
+const display = document.getElementById('timer'), label = document.getElementById('label'), startBtn = document.getElementById('start-btn');
+function updateDisplay() { const m = Math.floor(timeLeft / 60).toString().padStart(2, '0'); const s = (timeLeft % 60).toString().padStart(2, '0'); display.textContent = m + ':' + s; }
+function tick() { timeLeft--; updateDisplay(); if (timeLeft <= 0) { clearInterval(timer); timer = null; if (isWork) { sessions++; document.getElementById('session-count').textContent = sessions; isWork = false; timeLeft = 5 * 60; label.textContent = 'Break Time'; } else { isWork = true; timeLeft = 25 * 60; label.textContent = 'Work Session'; } updateDisplay(); startBtn.textContent = 'Start'; } }
+startBtn.addEventListener('click', () => { if (timer) { clearInterval(timer); timer = null; startBtn.textContent = 'Start'; } else { timer = setInterval(tick, 1000); startBtn.textContent = 'Pause'; } });
+document.getElementById('reset-btn').addEventListener('click', () => { clearInterval(timer); timer = null; isWork = true; timeLeft = 25 * 60; label.textContent = 'Work Session'; startBtn.textContent = 'Start'; updateDisplay(); });

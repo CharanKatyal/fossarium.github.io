@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspect Ratio Calculator - Spectrum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="game-body">
+    <script>const s = localStorage.getItem('spectrum-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+    <div class="app-container tool-container-wrapper"><a href="../../index.html" class="back-button">&larr; Back to
+            Spectrum</a>
+        <div class="tool-header">
+            <h1>Aspect Ratio</h1>
+            <p class="tool-subtitle">Calculate and convert image/video aspect ratios.</p>
+        </div>
+        <div class="converter-grid">
+            <div class="field"><label>Width</label><input type="number" id="w1" value="1920"></div>
+            <div class="field"><label>Height</label><input type="number" id="h1" value="1080"></div>
+        </div>
+        <div class="result" id="result">Ratio: 16:9</div>
+        <div class="converter-grid" style="margin-top:20px">
+            <div class="field"><label>New Width</label><input type="number" id="w2" value="1280"></div>
+            <div class="field"><label>New Height (auto)</label><input type="number" id="h2" readonly></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Formatter - Spectrum</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</head>
+
+<body class="game-body">
+    <script>const s = localStorage.getItem('spectrum-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+    <div class="app-container tool-container-wrapper"><a href="../../index.html" class="back-button">&larr; Back to
+            Spectrum</a>
+        <div class="tool-header">
+            <h1>SQL Formatter</h1>
+            <p class="tool-subtitle">Prettify messy SQL queries.</p>
+        </div>
+        <div class="actions-bar"><button id="format-btn" class="action-btn primary"><ion-icon
+                    name="code-outline"></ion-icon> Format</button><button id="copy-btn"
+                class="action-btn secondary"><ion-icon name="copy-outline"></ion-icon> Copy</button></div>
+        <div class="editor-layout">
+            <div class="editor-pane"><label>Input SQL</label><textarea id="input"
+                    placeholder="SELECT * FROM users WHERE id = 1 AND name = 'John'"></textarea></div>
+            <div class="editor-pane"><label>Formatted</label><textarea id="output" readonly></textarea></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

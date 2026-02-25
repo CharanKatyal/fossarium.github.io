@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Diff - Spectrum</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="game-body">
+    <script>const s = localStorage.getItem('spectrum-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+    <div class="app-container tool-container-wrapper"><a href="../../index.html" class="back-button">&larr; Back to
+            Spectrum</a>
+        <div class="tool-header">
+            <h1>Text Diff</h1>
+            <p class="tool-subtitle">Compare two text blocks and highlight differences.</p>
+        </div><button id="diff-btn" class="action-btn primary">Compare</button>
+        <div class="editor-layout">
+            <div class="editor-pane"><label>Original</label><textarea id="text-a"
+                    placeholder="Paste original text..."></textarea></div>
+            <div class="editor-pane"><label>Modified</label><textarea id="text-b"
+                    placeholder="Paste modified text..."></textarea></div>
+        </div>
+        <div class="diff-output" id="diff-output"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

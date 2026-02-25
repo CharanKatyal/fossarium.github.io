@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Contrast Checker - Spectrum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="game-body">
+    <script>
+        const savedTheme = localStorage.getItem('spectrum-theme');
+        if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.classList.add('light-theme');
+        }
+    </script>
+    <div class="app-container tool-container-wrapper">
+        <a href="../../index.html" class="back-button">&larr; Back to Spectrum</a>
+        <div class="tool-header">
+            <h1>Contrast Checker</h1>
+            <p class="tool-subtitle">Test foreground/background WCAG contrast scores.</p>
+        </div>
+        <div class="color-inputs">
+            <div class="color-field">
+                <label>Foreground</label>
+                <input type="color" id="fg-color" value="#ffffff">
+                <input type="text" id="fg-hex" value="#ffffff">
+            </div>
+            <div class="color-field">
+                <label>Background</label>
+                <input type="color" id="bg-color" value="#000000">
+                <input type="text" id="bg-hex" value="#000000">
+            </div>
+        </div>
+        <div class="preview-box" id="preview">
+            <p class="preview-large">Large Text (18pt+)</p>
+            <p class="preview-normal">Normal body text (14px)</p>
+        </div>
+        <div class="results" id="results">
+            <div class="result-card"><span class="result-label">Contrast Ratio</span><span id="ratio"
+                    class="result-value">21:1</span></div>
+            <div class="result-card"><span class="result-label">WCAG AA Normal</span><span id="aa-normal"
+                    class="result-value pass">Pass</span></div>
+            <div class="result-card"><span class="result-label">WCAG AA Large</span><span id="aa-large"
+                    class="result-value pass">Pass</span></div>
+            <div class="result-card"><span class="result-label">WCAG AAA Normal</span><span id="aaa-normal"
+                    class="result-value pass">Pass</span></div>
+            <div class="result-card"><span class="result-label">WCAG AAA Large</span><span id="aaa-large"
+                    class="result-value pass">Pass</span></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+.tool-container-wrapper {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+}
+
+.tool-header {
+    margin-bottom: 25px;
+}
+
+.tool-header h1 {
+    font-size: 2.2rem;
+    margin: 0;
+}
+
+.tool-subtitle {
+    color: var(--text-muted);
+    margin: 5px 0 0 0;
+}
+
+.converter-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.field label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.field input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.field input:focus {
+    border-color: var(--accent-color);
+}
+
+@media (max-width: 500px) {
+    .converter-grid {
+        grid-template-columns: 1fr;
+    }
+}

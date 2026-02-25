@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer - Spectrum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="game-body">
+    <script>const s = localStorage.getItem('spectrum-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+    <div class="app-container tool-container-wrapper"><a href="../../index.html" class="back-button">&larr; Back to
+            Spectrum</a>
+        <div class="tool-header">
+            <h1>Pomodoro</h1>
+            <p class="tool-subtitle">Productivity timer with work/break splits.</p>
+        </div>
+        <div class="timer-display" id="timer">25:00</div>
+        <div class="timer-label" id="label">Work Session</div>
+        <div class="controls"><button id="start-btn" class="action-btn primary">Start</button><button id="reset-btn"
+                class="action-btn secondary">Reset</button></div>
+        <div class="sessions">Sessions: <span id="session-count">0</span></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

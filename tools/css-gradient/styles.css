@@ -1,0 +1,109 @@
+.tool-container-wrapper {
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+}
+
+.tool-header {
+    margin-bottom: 20px;
+}
+
+.tool-header h1 {
+    font-size: 2.2rem;
+    margin: 0;
+}
+
+.tool-subtitle {
+    color: var(--text-muted);
+    margin: 5px 0 0 0;
+}
+
+.editor {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ctrl label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+}
+
+.ctrl select,
+.ctrl input[type="color"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+}
+
+.ctrl input[type="color"] {
+    height: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+.ctrl input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent-color);
+}
+
+.preview {
+    flex: 1.5;
+    min-height: 250px;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+}
+
+.code-output {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.code-output code {
+    flex: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    word-break: break-all;
+}
+
+.action-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    background: var(--gradient-3);
+    color: #fff;
+    transition: transform 0.15s;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 650px) {
+    .editor {
+        flex-direction: column;
+    }
+}

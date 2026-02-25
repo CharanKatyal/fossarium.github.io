@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Counter - Spectrum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="game-body">
+    <script>const s = localStorage.getItem('spectrum-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+    <div class="app-container tool-container-wrapper"><a href="../../index.html" class="back-button">&larr; Back to
+            Spectrum</a>
+        <div class="tool-header">
+            <h1>Word Counter</h1>
+            <p class="tool-subtitle">Real-time word, character, and sentence counts.</p>
+        </div>
+        <div class="stats-row">
+            <div class="stat-box"><span class="stat-val" id="words">0</span><span class="stat-label">Words</span></div>
+            <div class="stat-box"><span class="stat-val" id="chars">0</span><span class="stat-label">Characters</span>
+            </div>
+            <div class="stat-box"><span class="stat-val" id="sentences">0</span><span
+                    class="stat-label">Sentences</span></div>
+            <div class="stat-box"><span class="stat-val" id="paragraphs">0</span><span
+                    class="stat-label">Paragraphs</span></div>
+            <div class="stat-box"><span class="stat-val" id="reading-time">0</span><span class="stat-label">Min
+                    Read</span></div>
+        </div><textarea id="text-input" placeholder="Start typing or paste your text here..."></textarea>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

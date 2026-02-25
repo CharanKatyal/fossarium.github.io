@@ -1,0 +1,77 @@
+.tool-container-wrapper {
+    max-width: 800px;
+    width: 100%;
+    padding: 20px;
+}
+
+.tool-header {
+    margin-bottom: 20px;
+}
+
+.tool-header h1 {
+    font-size: 2.2rem;
+    margin: 0;
+}
+
+.tool-subtitle {
+    color: var(--text-muted);
+    margin: 5px 0 0 0;
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.input-row input {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+.input-row input:focus {
+    border-color: var(--accent-color);
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.action-btn.secondary {
+    background: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+}
+
+.art-output {
+    background: rgba(22, 27, 34, 0.6);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    line-height: 1;
+    color: var(--accent-color);
+    overflow-x: auto;
+    min-height: 100px;
+}
+
+:root.light-theme .art-output {
+    background: #fff;
+}

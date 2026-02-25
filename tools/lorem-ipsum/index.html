@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorem Ipsum Generator - Spectrum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</head>
+
+<body class="game-body">
+    <script>
+        const savedTheme = localStorage.getItem('spectrum-theme');
+        if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            document.documentElement.classList.add('light-theme');
+        }
+    </script>
+    <div class="app-container tool-container-wrapper">
+        <a href="../../index.html" class="back-button">&larr; Back to Spectrum</a>
+        <div class="tool-header">
+            <h1>Lorem Ipsum</h1>
+            <p class="tool-subtitle">Generate placeholder filler text.</p>
+        </div>
+        <div class="controls-row">
+            <label for="count">Paragraphs:</label>
+            <input type="number" id="count" value="3" min="1" max="50">
+            <button id="generate-btn" class="action-btn primary"><ion-icon name="text-outline"></ion-icon>
+                Generate</button>
+            <button id="copy-btn" class="action-btn secondary"><ion-icon name="copy-outline"></ion-icon> Copy</button>
+        </div>
+        <div class="output-area">
+            <div id="output"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

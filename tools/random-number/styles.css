@@ -1,0 +1,73 @@
+.tool-container-wrapper {
+    max-width: 450px;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.tool-header {
+    margin-bottom: 30px;
+}
+
+.tool-header h1 {
+    font-size: 2.2rem;
+    margin: 0;
+}
+
+.tool-subtitle {
+    color: var(--text-muted);
+    margin: 5px 0 0 0;
+}
+
+.result {
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--accent-color);
+    margin-bottom: 30px;
+    font-variant-numeric: tabular-nums;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.field label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.field input {
+    width: 100px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1.1rem;
+    text-align: center;
+    outline: none;
+}
+
+.action-btn {
+    padding: 14px 40px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    background: var(--gradient-4);
+    color: #fff;
+    transition: transform 0.15s;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+}

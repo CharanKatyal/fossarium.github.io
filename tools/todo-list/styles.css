@@ -1,0 +1,101 @@
+.tool-container-wrapper {
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+}
+
+.tool-header {
+    margin-bottom: 20px;
+}
+
+.tool-header h1 {
+    font-size: 2.2rem;
+    margin: 0;
+}
+
+.tool-subtitle {
+    color: var(--text-muted);
+    margin: 5px 0 0 0;
+}
+
+.add-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.add-row input {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    outline: none;
+}
+
+.add-row input:focus {
+    border-color: var(--accent-color);
+}
+
+.action-btn {
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+}
+
+.action-btn.primary {
+    background: var(--gradient-6);
+    color: #fff;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    transition: opacity 0.2s;
+}
+
+ul li.done span {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+ul li input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--accent-color);
+    cursor: pointer;
+}
+
+ul li span {
+    flex: 1;
+    font-size: 1rem;
+}
+
+ul li button {
+    background: transparent;
+    border: none;
+    color: #ff4757;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+}
