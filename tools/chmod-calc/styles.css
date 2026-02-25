@@ -1,0 +1,86 @@
+.tool-container-wrapper {
+    max-width: 450px;
+    width: 100%;
+    padding: 20px;
+    text-align: center
+}
+
+.tool-header {
+    margin-bottom: 20px
+}
+
+.tool-header h1 {
+    font-size: 2.2rem;
+    margin: 0
+}
+
+.tool-subtitle {
+    color: var(--text-muted);
+    margin: 5px 0 0 0
+}
+
+.numeric {
+    margin-bottom: 25px
+}
+
+.big {
+    font-size: 4rem;
+    font-weight: 900;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent-color);
+    display: block
+}
+
+.sym {
+    font-size: 1.3rem;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-muted)
+}
+
+.perm-grid {
+    display: grid;
+    grid-template-columns: auto repeat(3, 1fr);
+    gap: 6px;
+    text-align: center
+}
+
+.perm-grid .hdr {
+    font-size: .75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding: 8px 0
+}
+
+.perm-grid .role {
+    font-weight: 700;
+    font-size: .85rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px
+}
+
+.perm-grid label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: .9rem;
+    transition: border-color .2s
+}
+
+.perm-grid label:has(input:checked) {
+    border-color: var(--accent-color);
+    background: rgba(88, 166, 255, .1)
+}
+
+.perm-grid input {
+    accent-color: var(--accent-color)
+}

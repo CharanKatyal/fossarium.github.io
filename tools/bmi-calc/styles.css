@@ -1,0 +1,84 @@
+.tool-container-wrapper {
+    max-width: 420px;
+    width: 100%;
+    padding: 20px;
+    text-align: center
+}
+
+.tool-header {
+    margin-bottom: 20px
+}
+
+.tool-header h1 {
+    font-size: 2.2rem;
+    margin: 0
+}
+
+.tool-subtitle {
+    color: var(--text-muted);
+    margin: 5px 0 0 0
+}
+
+.toggle {
+    display: flex;
+    gap: 4px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 4px;
+    margin-bottom: 20px
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all .2s
+}
+
+.tab.active {
+    background: var(--accent-color);
+    color: #000
+}
+
+label {
+    display: block;
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin: 12px 0 5px;
+    text-align: left
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 1.1rem;
+    outline: 0;
+    box-sizing: border-box
+}
+
+.result {
+    font-size: 4rem;
+    font-weight: 900;
+    margin: 25px 0 10px;
+    color: var(--accent-color)
+}
+
+.category {
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 8px
+}

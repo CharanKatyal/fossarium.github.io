@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Picker - Spectrum</title>
+    <title>Timestamp Converter - Spectrum</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap"
         rel="stylesheet">
@@ -17,11 +17,18 @@
     <div class="app-container tool-container-wrapper"><a href="../../index.html" class="back-button">&larr; Back to
             Spectrum</a>
         <div class="tool-header">
-            <h1>Color Picker</h1>
-            <p class="tool-subtitle">Pick a color and get all formats.</p>
+            <h1>Timestamp Converter</h1>
+            <p class="tool-subtitle">Convert between Unix timestamps and dates.</p>
         </div>
-        <div class="preview" id="preview"></div><input type="color" id="picker" value="#58a6ff">
-        <div class="formats" id="formats"></div>
+        <div class="now-box">Now: <span id="now"></span></div>
+        <div class="section"><label>Unix Timestamp (seconds)</label><input type="number" id="ts"
+                placeholder="1700000000"><button onclick="tsToDate()" class="sm-btn">→ Convert to Date</button>
+            <div id="ts-result" class="result-box"></div>
+        </div>
+        <div class="section"><label>Date String</label><input type="datetime-local" id="dt"><button onclick="dateToTs()"
+                class="sm-btn">→ Convert to Timestamp</button>
+            <div id="dt-result" class="result-box"></div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

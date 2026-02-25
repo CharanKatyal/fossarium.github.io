@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator - Spectrum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="game-body">
+    <script>const s = localStorage.getItem('spectrum-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+    <div class="app-container tool-container-wrapper"><a href="../../index.html" class="back-button">&larr; Back to
+            Spectrum</a>
+        <div class="tool-header">
+            <h1>BMI Calculator</h1>
+            <p class="tool-subtitle">Body Mass Index for adults.</p>
+        </div>
+        <div class="toggle"><button class="tab active" data-u="metric">Metric</button><button class="tab"
+                data-u="imperial">Imperial</button></div>
+        <div id="metric-fields"><label>Height (cm)</label><input type="number" id="cm" value="175"><label>Weight
+                (kg)</label><input type="number" id="kg" value="70"></div>
+        <div id="imperial-fields" style="display:none"><label>Height (in)</label><input type="number" id="in"
+                value="69"><label>Weight (lbs)</label><input type="number" id="lbs" value="154"></div>
+        <div class="result" id="result"></div>
+        <div class="category" id="category"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

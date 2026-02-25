@@ -1,0 +1,1 @@
+const t=document.getElementById("text"),b=document.getElementById("binary");t.addEventListener("input",()=>{b.value=t.value.split("").map(c=>c.charCodeAt(0).toString(2).padStart(8,"0")).join(" ");});b.addEventListener("input",()=>{try{t.value=b.value.trim().split(/\s+/).map(x=>String.fromCharCode(parseInt(x,2))).join("");}catch(e){}});

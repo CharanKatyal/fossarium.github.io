@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Picker - Spectrum</title>
+    <title>Cron Parser - Spectrum</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap"
         rel="stylesheet">
@@ -17,11 +17,11 @@
     <div class="app-container tool-container-wrapper"><a href="../../index.html" class="back-button">&larr; Back to
             Spectrum</a>
         <div class="tool-header">
-            <h1>Color Picker</h1>
-            <p class="tool-subtitle">Pick a color and get all formats.</p>
-        </div>
-        <div class="preview" id="preview"></div><input type="color" id="picker" value="#58a6ff">
-        <div class="formats" id="formats"></div>
+            <h1>Cron Parser</h1>
+            <p class="tool-subtitle">Decode cron expressions into human-readable text.</p>
+        </div><input type="text" id="cron" class="cron-input" value="*/5 * * * *" placeholder="* * * * *">
+        <div class="fields" id="fields"></div>
+        <div class="result" id="result"></div>
     </div>
     <script src="script.js"></script>
 </body>

@@ -1,0 +1,82 @@
+.tool-container-wrapper {
+    max-width: 550px;
+    width: 100%;
+    padding: 20px
+}
+
+.tool-header {
+    margin-bottom: 15px
+}
+
+.tool-header h1 {
+    font-size: 2.2rem;
+    margin: 0
+}
+
+.tool-subtitle {
+    color: var(--text-muted);
+    margin: 5px 0 0 0
+}
+
+.now-box {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 20px;
+    color: var(--accent-color)
+}
+
+.section {
+    margin-bottom: 20px
+}
+
+.section label {
+    display: block;
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 8px
+}
+
+.section input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    outline: 0;
+    box-sizing: border-box;
+    margin-bottom: 8px
+}
+
+.sm-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: .85rem;
+    cursor: pointer;
+    background: var(--gradient-1);
+    color: #000;
+    margin-bottom: 8px
+}
+
+.result-box {
+    background: rgba(22, 27, 34, .4);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .9rem;
+    min-height: 20px;
+    color: var(--accent-color)
+}

@@ -1,0 +1,146 @@
+.tool-container-wrapper {
+    max-width: 1100px;
+    width: 100%;
+    padding: 20px
+}
+
+.tool-header {
+    margin-bottom: 15px
+}
+
+.tool-header h1 {
+    font-size: 2.2rem;
+    margin: 0
+}
+
+.tool-subtitle {
+    color: var(--text-muted);
+    margin: 5px 0 0 0
+}
+
+.editor-layout {
+    display: flex;
+    gap: 15px;
+    height: 65vh;
+    min-height: 300px
+}
+
+.editor-pane {
+    flex: 1;
+    display: flex;
+    flex-direction: column
+}
+
+.editor-pane label {
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: 8px
+}
+
+.editor-pane textarea {
+    flex: 1;
+    background: rgba(22, 27, 34, .6);
+    color: var(--text-color);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 15px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .85rem;
+    line-height: 1.6;
+    resize: none;
+    outline: 0;
+    box-sizing: border-box
+}
+
+:root.light-theme .editor-pane textarea {
+    background: #fff
+}
+
+.preview {
+    flex: 1;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 20px;
+    overflow-y: auto;
+    line-height: 1.7;
+    font-size: .95rem
+}
+
+.preview h1,
+.preview h2,
+.preview h3 {
+    margin: .8em 0 .4em
+}
+
+.preview h1 {
+    font-size: 1.8rem
+}
+
+.preview h2 {
+    font-size: 1.4rem;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: .3em
+}
+
+.preview h3 {
+    font-size: 1.1rem
+}
+
+.preview code {
+    background: rgba(88, 166, 255, .1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: .85em
+}
+
+.preview pre {
+    background: rgba(22, 27, 34, .5);
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto
+}
+
+.preview pre code {
+    background: 0 0;
+    padding: 0
+}
+
+.preview blockquote {
+    border-left: 3px solid var(--accent-color);
+    margin: 10px 0;
+    padding: 5px 15px;
+    color: var(--text-muted)
+}
+
+.preview ul,
+.preview ol {
+    padding-left: 20px
+}
+
+.preview a {
+    color: var(--accent-color)
+}
+
+.preview strong {
+    font-weight: 700
+}
+
+.preview em {
+    font-style: italic
+}
+
+@media(max-width:700px) {
+    .editor-layout {
+        flex-direction: column;
+        height: auto
+    }
+
+    .editor-pane textarea,
+    .preview {
+        min-height: 200px
+    }
+}

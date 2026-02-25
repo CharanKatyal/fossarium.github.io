@@ -1,0 +1,1 @@
+const editor=document.getElementById("editor"),status=document.getElementById("status");editor.value=localStorage.getItem("spectrum-notepad")||"";let timeout;editor.addEventListener("input",()=>{status.textContent="Saving...";clearTimeout(timeout);timeout=setTimeout(()=>{localStorage.setItem("spectrum-notepad",editor.value);status.textContent="Saved ✓";},500);});

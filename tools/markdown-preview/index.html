@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Picker - Spectrum</title>
+    <title>Markdown Previewer - Spectrum</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="styles.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 </head>
 
 <body class="game-body">
@@ -17,11 +18,29 @@
     <div class="app-container tool-container-wrapper"><a href="../../index.html" class="back-button">&larr; Back to
             Spectrum</a>
         <div class="tool-header">
-            <h1>Color Picker</h1>
-            <p class="tool-subtitle">Pick a color and get all formats.</p>
+            <h1>Markdown Previewer</h1>
+            <p class="tool-subtitle">Write Markdown, see live HTML preview.</p>
         </div>
-        <div class="preview" id="preview"></div><input type="color" id="picker" value="#58a6ff">
-        <div class="formats" id="formats"></div>
+        <div class="editor-layout">
+            <div class="editor-pane"><label>Markdown</label><textarea id="input" placeholder="# Hello World">## Hello Spectrum
+
+This is **bold** and *italic* text.
+
+- Item 1
+- Item 2
+- Item 3
+
+> A blockquote example
+
+`inline code` and a [link](https://example.com)
+
+```
+code block
+```</textarea></div>
+            <div class="editor-pane preview-pane"><label>Preview</label>
+                <div id="output" class="preview"></div>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

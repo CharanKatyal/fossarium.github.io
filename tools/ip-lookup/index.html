@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Color Picker - Spectrum</title>
+    <title>IP Lookup - Spectrum</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap"
         rel="stylesheet">
@@ -17,11 +17,10 @@
     <div class="app-container tool-container-wrapper"><a href="../../index.html" class="back-button">&larr; Back to
             Spectrum</a>
         <div class="tool-header">
-            <h1>Color Picker</h1>
-            <p class="tool-subtitle">Pick a color and get all formats.</p>
-        </div>
-        <div class="preview" id="preview"></div><input type="color" id="picker" value="#58a6ff">
-        <div class="formats" id="formats"></div>
+            <h1>IP Address Info</h1>
+            <p class="tool-subtitle">See your public IP and related info.</p>
+        </div><button id="fetch-btn" class="action-btn primary">Detect My IP</button>
+        <div id="results" class="results"></div>
     </div>
     <script src="script.js"></script>
 </body>

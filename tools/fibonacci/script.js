@@ -1,0 +1,1 @@
+function gen(){const n=parseInt(document.getElementById("count").value);const fib=[0,1];for(let i=2;i<n;i++)fib.push(fib[i-1]+fib[i-2]);document.getElementById("result").textContent=fib.slice(0,n).join(", ");}
