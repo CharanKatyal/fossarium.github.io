@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>403 - Access Forbidden</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #dc3545; /* A red for forbidden access */
+            --background-color: #f8f9fa;
+            --text-color: #212529;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 6rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+        p {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+        a {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        a:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>403</h1>
+        <h2>Access Forbidden.</h2>
+        <p>You do not have permission to view this page. Please contact the administrator if you believe this is an error.</p>
+        <a href="/">Go to Homepage</a>
+    </div>
+</body>
+</html>
