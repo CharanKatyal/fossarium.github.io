@@ -4,16 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSV to JSON - FOSSarium</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap"
-        rel="stylesheet">
+    <title>CSV to JSON Converter - FOSSarium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body class="game-body">
+<body>
     <script>const s = localStorage.getItem('fossarium-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
 
     <div class="theme-toggle-container">
         <button id="theme-toggle" title="Toggle Light/Dark Theme">
@@ -24,15 +30,29 @@
     <div class="app-container tool-container-wrapper">
         <div class="tool-header">
             <h1>CSV to JSON</h1>
-            <p class="tool-subtitle">Convert CSV data into JSON arrays.</p>
+            <p class="tool-subtitle">Convert comma-separated data into structured JSON objects instantly.</p>
         </div>
-        <div class="actions-bar"><button id="convert-btn" class="action-btn primary"><ion-icon
-                    name="swap-horizontal-outline"></ion-icon> Convert</button><button id="copy-btn"
-                class="action-btn secondary"><ion-icon name="copy-outline"></ion-icon> Copy</button></div>
-        <div class="editor-layout">
-            <div class="editor-pane"><label>CSV Input</label><textarea id="csv-input"
-                    placeholder="name,age,city&#10;Alice,30,NYC&#10;Bob,25,LA"></textarea></div>
-            <div class="editor-pane"><label>JSON Output</label><textarea id="json-output" readonly></textarea></div>
+
+        <div class="tool-card">
+            <div class="editor-layout">
+                <div class="editor-pane">
+                    <label for="csv-input">CSV Input</label>
+                    <textarea id="csv-input" placeholder="name,age,city&#10;Alice,30,NYC&#10;Bob,25,LA"></textarea>
+                </div>
+                <div class="editor-pane">
+                    <label for="json-output">JSON Output</label>
+                    <textarea id="json-output" readonly placeholder="JSON result will appear here..."></textarea>
+                </div>
+            </div>
+
+            <div class="action-footer">
+                <button id="convert-btn" class="btn primary-btn">
+                    <ion-icon name="swap-horizontal-outline"></ion-icon> Convert Now
+                </button>
+                <button id="copy-btn" class="btn secondary-btn">
+                    <ion-icon name="copy-outline"></ion-icon> Copy JSON
+                </button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

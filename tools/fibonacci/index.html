@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Generator - FOSSarium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+    <script>const s = localStorage.getItem('fossarium-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="theme-toggle-container">
+        <button id="theme-toggle" title="Toggle Light/Dark Theme">
+            <ion-icon name="sunny-outline"></ion-icon>
+        </button>
+    </div>
+
+    <div class="app-container tool-container-wrapper">
+        <div class="tool-header">
+            <h1>Fibonacci</h1>
+            <p class="tool-subtitle">Generate the golden ratio sequence to any length with a single click.</p>
+        </div>
+
+        <div class="tool-card">
+            <div class="input-section">
+                <div class="field">
+                    <label for="count">Sequence Length</label>
+                    <input type="number" id="count" value="10" min="1" max="100">
+                </div>
+                <button onclick="gen()" class="btn primary-btn">
+                    <ion-icon name="flash-outline"></ion-icon> Generate Sequence
+                </button>
+            </div>
+
+            <div class="result-area">
+                <div class="result-label">Generated Sequence</div>
+                <div class="result-text" id="result">0, 1, 1, 2, 3, 5, 8, 13, 21, 34</div>
+                <button class="copy-btn" id="copy-btn" title="Copy to clipboard">
+                    <ion-icon name="copy-outline"></ion-icon> Copy
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

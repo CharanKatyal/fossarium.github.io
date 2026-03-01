@@ -5,18 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS Box Shadow Generator - FOSSarium</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Ionicons for beautiful icons -->
+    <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body class="game-body">
+<body>
     <script>const s = localStorage.getItem('fossarium-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
 
     <div class="theme-toggle-container">
         <button id="theme-toggle" title="Toggle Light/Dark Theme">
@@ -25,34 +28,60 @@
     </div>
 
     <div class="app-container tool-container-wrapper">
-        
         <div class="tool-header">
             <h1>Box Shadow</h1>
-            <p class="tool-subtitle">Visual CSS box-shadow generator.</p>
+            <p class="tool-subtitle">Design perfect shadows with real-time visual feedback and CSS export.</p>
         </div>
-        <div class="editor">
-            <div class="sliders">
-                <div class="slider-group"><label>Horizontal <span id="h-val">5</span>px</label><input type="range"
-                        id="h-offset" min="-50" max="50" value="5"></div>
-                <div class="slider-group"><label>Vertical <span id="v-val">5</span>px</label><input type="range"
-                        id="v-offset" min="-50" max="50" value="5"></div>
-                <div class="slider-group"><label>Blur <span id="b-val">15</span>px</label><input type="range" id="blur"
-                        min="0" max="100" value="15"></div>
-                <div class="slider-group"><label>Spread <span id="s-val">0</span>px</label><input type="range"
-                        id="spread" min="-50" max="50" value="0"></div>
-                <div class="slider-group"><label>Color</label><input type="color" id="shadow-color" value="#000000">
+
+        <div class="tool-card">
+            <div class="editor-grid">
+                <div class="controls-pane">
+                    <div class="field-group">
+                        <label>Horizontal Offset: <span id="h-val">5</span>px</label>
+                        <input type="range" id="h-offset" min="-50" max="50" value="5">
+                    </div>
+                    <div class="field-group">
+                        <label>Vertical Offset: <span id="v-val">5</span>px</label>
+                        <input type="range" id="v-offset" min="-50" max="50" value="5">
+                    </div>
+                    <div class="field-group">
+                        <label>Blur Radius: <span id="b-val">15</span>px</label>
+                        <input type="range" id="blur" min="0" max="100" value="15">
+                    </div>
+                    <div class="field-group">
+                        <label>Spread Radius: <span id="s-val">0</span>px</label>
+                        <input type="range" id="spread" min="-50" max="50" value="0">
+                    </div>
+                    <div class="field-group">
+                        <label>Shadow Color</label>
+                        <input type="color" id="shadow-color" value="#000000">
+                    </div>
+                    <div class="field-group">
+                        <label>Opacity: <span id="o-val">40</span>%</label>
+                        <input type="range" id="opacity" min="0" max="100" value="40">
+                    </div>
+                    <div class="field-group checkbox">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="inset">
+                            <span class="checkmark"></span>
+                            Inset Shadow
+                        </label>
+                    </div>
                 </div>
-                <div class="slider-group"><label>Opacity <span id="o-val">40</span>%</label><input type="range"
-                        id="opacity" min="0" max="100" value="40"></div>
-                <div class="slider-group"><label><input type="checkbox" id="inset"> Inset</label></div>
+
+                <div class="preview-pane">
+                    <div class="preview-box" id="preview-box"></div>
+                </div>
             </div>
-            <div class="preview-area">
-                <div class="preview-box" id="preview-box"></div>
+
+            <div class="code-section">
+                <div class="code-box">
+                    <code id="css-output">box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.4);</code>
+                    <button class="copy-btn" id="copy-btn" title="Copy to clipboard">
+                        <ion-icon name="copy-outline"></ion-icon>
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="code-output">
-            <code id="css-output">box-shadow: 5px 5px 15px 0px rgba(0,0,0,0.4);</code>
-            <button id="copy-btn" class="action-btn">Copy CSS</button>
         </div>
     </div>
     <script src="script.js"></script>

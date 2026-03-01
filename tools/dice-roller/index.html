@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller - FOSSarium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+    <script>const s = localStorage.getItem('fossarium-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="theme-toggle-container">
+        <button id="theme-toggle" title="Toggle Light/Dark Theme">
+            <ion-icon name="sunny-outline"></ion-icon>
+        </button>
+    </div>
+
+    <div class="app-container tool-container-wrapper">
+        <div class="tool-header">
+            <h1>Dice Roller</h1>
+            <p class="tool-subtitle">Roll multiple dice of any size for your favorite tabletop games.</p>
+        </div>
+
+        <div class="tool-card">
+            <div class="config-grid">
+                <div class="field">
+                    <label for="count">Number of Dice</label>
+                    <input type="number" id="count" value="1" min="1" max="20">
+                </div>
+                <div class="field">
+                    <label for="type">Dice Type</label>
+                    <select id="type">
+                        <option value="4">d4</option>
+                        <option value="6" selected>d6</option>
+                        <option value="8">d8</option>
+                        <option value="10">d10</option>
+                        <option value="12">d12</option>
+                        <option value="20">d20</option>
+                        <option value="100">d100</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="dice-display" id="result">
+                <!-- Individual dice results generated here -->
+            </div>
+
+            <div class="summary-area">
+                <div class="total-label">Sum Total</div>
+                <div class="total-value" id="total">0</div>
+            </div>
+
+            <button id="roll-btn" class="btn primary-btn">
+                <ion-icon name="dice-outline"></ion-icon> Roll Dice
+            </button>
+
+            <div class="history-section">
+                <div class="history-label">Recent History</div>
+                <div class="history-list" id="history">No rolls yet</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

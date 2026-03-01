@@ -5,18 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS Gradient Generator - FOSSarium</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Ionicons for beautiful icons -->
+    <!-- Ionicons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
-<body class="game-body">
+<body>
     <script>const s = localStorage.getItem('fossarium-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
 
     <div class="theme-toggle-container">
         <button id="theme-toggle" title="Toggle Light/Dark Theme">
@@ -25,25 +28,50 @@
     </div>
 
     <div class="app-container tool-container-wrapper">
-        
         <div class="tool-header">
-            <h1>Gradient Generator</h1>
-            <p class="tool-subtitle">Create beautiful CSS gradients.</p>
+            <h1>CSS Gradient</h1>
+            <p class="tool-subtitle">Design stunning gradients with precision controls and instant CSS output.</p>
         </div>
-        <div class="editor">
-            <div class="controls">
-                <div class="ctrl"><label>Type</label><select id="type">
-                        <option>linear</option>
-                        <option>radial</option>
-                    </select></div>
-                <div class="ctrl"><label>Angle <span id="angle-val">135</span>°</label><input type="range" id="angle"
-                        min="0" max="360" value="135"></div>
-                <div class="ctrl"><label>Color 1</label><input type="color" id="c1" value="#7F00FF"></div>
-                <div class="ctrl"><label>Color 2</label><input type="color" id="c2" value="#E100FF"></div>
+
+        <div class="tool-card">
+            <div class="editor-grid">
+                <div class="controls-pane">
+                    <div class="field-group">
+                        <label for="type">Gradient Type</label>
+                        <select id="type">
+                            <option value="linear">Linear</option>
+                            <option value="radial">Radial</option>
+                        </select>
+                    </div>
+                    <div class="field-group" id="angle-ctrl">
+                        <label>Angle: <span id="angle-val">135</span>°</label>
+                        <input type="range" id="angle" min="0" max="360" value="135">
+                    </div>
+                    <div class="color-inputs">
+                        <div class="field-group">
+                            <label>Color 1</label>
+                            <input type="color" id="c1" value="#7F00FF">
+                        </div>
+                        <div class="field-group">
+                            <label>Color 2</label>
+                            <input type="color" id="c2" value="#E100FF">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-pane">
+                    <div class="preview-box" id="preview"></div>
+                </div>
             </div>
-            <div class="preview" id="preview"></div>
-        </div>
-        <div class="code-output"><code id="css-output"></code><button id="copy-btn" class="action-btn">Copy CSS</button>
+
+            <div class="code-section">
+                <div class="code-box">
+                    <code id="css-output">background: linear-gradient(135deg, #7F00FF, #E100FF);</code>
+                    <button class="copy-btn" id="copy-btn" title="Copy to clipboard">
+                        <ion-icon name="copy-outline"></ion-icon>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>

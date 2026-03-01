@@ -1,36 +1,50 @@
-const units=["Bytes","KB","MB","GB","TB","PB"];function convert(){const v=parseFloat(document.getElementById("val").value);const u=parseInt(document.getElementById("unit").value);const bytes=v*Math.pow(1024,u);document.getElementById("result").innerHTML=units.map((name,i)=>`<div style="display:flex;justify-content:space-between;padding:4px 0"><span style="color:var(--text-muted)">${name}</span><span style="font-weight:700">${(bytes/Math.pow(1024,i)).toLocaleString(undefined,{maximumFractionDigits:4})}</span></div>`).join("");}document.querySelectorAll("input,select").forEach(e=>e.addEventListener("input",convert));convert();
+const units = ["Bytes", "Kilobytes (KB)", "Megabytes (MB)", "Gigabytes (GB)", "Terabytes (TB)", "Petabytes (PB)"];
+const valInput = document.getElementById("val");
+const unitSelect = document.getElementById("unit");
+const resultContainer = document.getElementById("result");
 
+function convert() {
+    const v = parseFloat(valInput.value);
+    if (isNaN(v)) {
+        resultContainer.innerHTML = '';
+        return;
+    }
+    
+    const u = parseInt(unitSelect.value);
+    const bytes = v * Math.pow(1024, u);
+    
+    resultContainer.innerHTML = units.map((name, i) => {
+        const value = bytes / Math.pow(1024, i);
+        const formattedValue = value.toLocaleString(undefined, {
+            maximumFractionDigits: i === 0 ? 0 : 4
+        });
+        
+        return `
+            <div class="result-item">
+                <span class="unit-name">${name}</span>
+                <span class="unit-value">${formattedValue}</span>
+            </div>
+        `;
+    }).join("");
+}
 
 function initTheme() {
     const themeToggleBtn = document.getElementById('theme-toggle');
     if (!themeToggleBtn) return;
-
     const icon = themeToggleBtn.querySelector('ion-icon');
-
     const savedTheme = localStorage.getItem('fossarium-theme');
-    if (savedTheme === 'light') {
-        document.documentElement.classList.add('light-theme');
-        if (icon) icon.setAttribute('name', 'moon-outline');
-    } else if (savedTheme === 'dark') {
-        document.documentElement.classList.remove('light-theme');
-        if (icon) icon.setAttribute('name', 'sunny-outline');
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
         document.documentElement.classList.add('light-theme');
         if (icon) icon.setAttribute('name', 'moon-outline');
     }
-
     themeToggleBtn.addEventListener('click', () => {
         document.documentElement.classList.toggle('light-theme');
         const isLight = document.documentElement.classList.contains('light-theme');
-
-        if (isLight) {
-            localStorage.setItem('fossarium-theme', 'light');
-            if (icon) icon.setAttribute('name', 'moon-outline');
-        } else {
-            localStorage.setItem('fossarium-theme', 'dark');
-            if (icon) icon.setAttribute('name', 'sunny-outline');
-        }
+        localStorage.setItem('fossarium-theme', isLight ? 'light' : 'dark');
+        if (icon) icon.setAttribute('name', isLight ? 'moon-outline' : 'sunny-outline');
     });
 }
 
+[valInput, unitSelect].forEach(e => e.addEventListener("input", convert));
 initTheme();
+convert();
