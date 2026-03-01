@@ -50,6 +50,10 @@ body {
     font-size: clamp(2rem, 5vw, 3.5rem);
     margin: 0;
     font-weight: 900;
+    background: linear-gradient(to right, var(--text-color), var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .tool-subtitle {
