@@ -14,7 +14,7 @@
         "category": "tools"
     },
     "aspect-ratio": {
-        "title": "Aspect Ratio Calc",
+        "title": "Aspect Ratio Calculator",
         "description": "Calculate dimensions and maintain perfect aspect ratios.",
         "icon-name": "calculator-outline",
         "credit": "FOSSarium",
