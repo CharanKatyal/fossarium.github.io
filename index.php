@@ -18,128 +18,28 @@ function getProjectMetadata() {
     return $GLOBALS['project_metadata'];
 }
 
-function generateCategoryGrid($directory)
+function generateCategoryGrid($targetCategory)
 {
-    if (!is_dir($directory))
-        return "";
-
-    $items = array_diff(scandir($directory), array('..', '.'));
     $html = "";
     $index = 1;
     $metadata = getProjectMetadata();
 
-    // Icon mapping based on common keywords in folder names
-    $iconMap = [
-        'calc' => 'calculator-outline',
-        'generator' => 'key-outline',
-        'editor' => 'create-outline',
-        'timer' => 'timer-outline',
-        'clock' => 'time-outline',
-        'converter' => 'swap-horizontal-outline',
-        'picker' => 'color-palette-outline',
-        'formatter' => 'code-slash-outline',
-        'tester' => 'search-outline',
-        'tracker' => 'checkbox-outline',
-        'game' => 'game-controller-outline',
-        'puzzle' => 'grid-outline',
-        'quiz' => 'help-circle-outline',
-        'board' => 'clipboard-outline',
-        'list' => 'list-outline',
-        'note' => 'document-text-outline',
-        'text' => 'text-outline',
-        'code' => 'code-working-outline',
-        'link' => 'link-outline',
-        'image' => 'image-outline',
-        'color' => 'color-fill-outline',
-        'shield' => 'shield-checkmark-outline',
-        'speed' => 'speedometer-outline',
-        'radar' => 'radio-outline',
-        'wifi' => 'wifi-outline',
-        'lock' => 'lock-closed-outline',
-        'user' => 'person-outline',
-        'card' => 'card-outline',
-        'weather' => 'cloud-outline',
-        'music' => 'musical-notes-outline',
-        'video' => 'videocam-outline',
-        'camera' => 'camera-outline',
-        'map' => 'map-outline',
-        'trash' => 'trash-outline',
-        'settings' => 'settings-outline',
-        'tool' => 'construct-outline',
-        'snake' => 'analytics-outline',
-        'tic-tac-toe' => 'grid-outline',
-        'pong' => 'tennisball-outline',
-        'search' => 'search-outline',
-        'download' => 'download-outline',
-        'upload' => 'upload-outline',
-        'mail' => 'mail-outline',
-        'chat' => 'chatbubble-outline',
-        'calendar' => 'calendar-outline',
-        'stats' => 'stats-chart-outline',
-        'chart' => 'pie-chart-outline',
-        'battery' => 'battery-charging-outline',
-        'heart' => 'heart-outline',
-        'star' => 'star-outline',
-        'home' => 'home-outline',
-        'folder' => 'folder-open-outline',
-        'file' => 'document-outline',
-        'print' => 'print-outline',
-        'volume' => 'volume-medium-outline',
-        'mic' => 'mic-outline',
-        'flash' => 'flash-outline',
-        'location' => 'location-outline',
-        'eye' => 'eye-outline',
-        'notification' => 'notifications-outline',
-        'info' => 'information-circle-outline',
-        'help' => 'help-circle-outline',
-        'refresh' => 'refresh-outline',
-        'share' => 'share-social-outline',
-        'save' => 'save-outline',
-        'archive' => 'archive-outline',
-        'hash' => 'finger-print-outline',
-        'json' => 'braces-outline',
-        'unit' => 'layers-outline',
-        'currency' => 'cash-outline',
-        'diff' => 'git-compare-outline',
-        'regex' => 'terminal-outline',
-        'uuid' => 'finger-print-outline',
-        'password' => 'keypad-outline'
-    ];
-
-    foreach ($items as $item) {
-        $path = $directory . '/' . $item;
-        if (is_dir($path) && file_exists($path . '/index.html')) {
-            $title = ucwords(str_replace('-', ' ', $item));
-            $description = "Modern FOSS tool.";
-            $icon = 'cube-outline';
-            $credit = "";
-
-            if (isset($metadata[$item])) {
-                $info = $metadata[$item];
-                if (isset($info['title'])) $title = $info['title'];
-                if (isset($info['description'])) $description = $info['description'];
-                if (isset($info['icon-name'])) $icon = $info['icon-name'];
-                if (isset($info['credit'])) $credit = $info['credit'];
-            } else {
-                $fileContent = file_get_contents($path . '/index.html');
-                if (preg_match('/<p class="tool-subtitle">(.*?)<\/p>/s', $fileContent, $matches)) {
-                    $description = trim(strip_tags($matches[1]));
-                } elseif (preg_match('/<p>(.*?)<\/p>/s', $fileContent, $matches)) {
-                    $description = trim(strip_tags($matches[1]));
-                }
-
-                foreach ($iconMap as $key => $val) {
-                    if (strpos($item, $key) !== false) {
-                        $icon = $val;
-                        break;
-                    }
-                }
-            }
-
+    foreach ($metadata as $folderName => $info) {
+        $category = isset($info['category']) ? $info['category'] : '';
+        
+        if ($category === $targetCategory) {
+            $title = isset($info['title']) ? $info['title'] : ucwords(str_replace('-', ' ', $folderName));
+            $description = isset($info['description']) ? $info['description'] : "Modern FOSS tool.";
+            $icon = isset($info['icon-name']) ? $info['icon-name'] : 'cube-outline';
+            $credit = isset($info['credit']) ? $info['credit'] : "";
+            
+            // Path depends on the category directory
+            $path = $targetCategory . '/' . $folderName . '/index.html';
+            
             $gradientClass = "gradient-" . (($index % 9) + 1);
             $creditHtml = $credit ? '<div class="card-credit">Credit: ' . htmlspecialchars($credit) . '</div>' : '';
             
-            $html .= '                    <a href="' . $directory . '/' . $item . '/index.html" class="item-card" data-title="' . htmlspecialchars($title) . '">
+            $html .= '                    <a href="' . $path . '" class="item-card" data-title="' . htmlspecialchars($title) . '">
                         ' . $creditHtml . '
                         <div class="card-icon ' . $gradientClass . '"><ion-icon name="' . $icon . '"></ion-icon></div>
                         <div class="card-content">

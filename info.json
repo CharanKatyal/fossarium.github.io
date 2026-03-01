@@ -3,972 +3,1134 @@
         "title": "Age Calculator",
         "description": "Calculate your exact age in years, months, and days with precision.",
         "icon-name": "calendar-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "ASCII-art": {
         "title": "ASCII Art Generator",
         "description": "Convert text into stylized ASCII art patterns.",
         "icon-name": "text-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "aspect-ratio": {
         "title": "Aspect Ratio Calc",
         "description": "Calculate dimensions and maintain perfect aspect ratios.",
         "icon-name": "calculator-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "barcode-generator": {
         "title": "Barcode Generator",
         "description": "Generate standard barcodes for products and labels.",
         "icon-name": "key-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "base-converter": {
         "title": "Base Converter",
         "description": "Convert numbers between different number systems (binary, hex, etc).",
         "icon-name": "swap-horizontal-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "base64": {
         "title": "Base64 Encode/Decode",
         "description": "Easily encode and decode strings in Base64 format.",
         "icon-name": "code-working-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "binary-translator": {
         "title": "Binary Translator",
         "description": "Translate text to binary and vice-versa instantly.",
         "icon-name": "code-working-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "bmi-calc": {
         "title": "BMI Calculator",
         "description": "Calculate Body Mass Index and check your health status.",
         "icon-name": "calculator-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "border-radius": {
         "title": "Border Radius Preview",
         "description": "Visualize and generate CSS border-radius codes.",
         "icon-name": "color-fill-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "box-model": {
         "title": "Box Model Visualizer",
         "description": "Understand and test the CSS Box Model.",
         "icon-name": "construct-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "calculator": {
         "title": "Scientific Calculator",
         "description": "A robust calculator for all your mathematical needs.",
         "icon-name": "calculator-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "calendar-widget": {
         "title": "Calendar Widget",
         "description": "A simple, clean calendar view for dates and events.",
         "icon-name": "calendar-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "char-map": {
         "title": "Character Map",
         "description": "Explore and copy special characters and symbols.",
         "icon-name": "text-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "chmod-calc": {
         "title": "Chmod Calculator",
         "description": "Quickly generate Linux file permission codes.",
         "icon-name": "lock-closed-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "clock-widget": {
         "title": "Modern Clock",
         "description": "Minimalist digital and analog clock for your workspace.",
         "icon-name": "time-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "coin-flipper": {
         "title": "Coin Flipper",
         "description": "Heads or tails? Let luck decide.",
         "icon-name": "cash-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "color-contrast": {
         "title": "Color Contrast Checker",
         "description": "Test accessibility and contrast between colors.",
         "icon-name": "color-palette-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "color-palette": {
         "title": "Palette Generator",
         "description": "Generate beautiful and cohesive color palettes.",
         "icon-name": "color-palette-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "color-picker": {
         "title": "Eye-dropper Picker",
         "description": "Pick the perfect color for your design.",
         "icon-name": "color-fill-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "countdown-date": {
         "title": "Date Countdown",
         "description": "Track the remaining time to a specific event.",
         "icon-name": "timer-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "countdown-timer": {
         "title": "Stopwatch Timer",
         "description": "A precision countdown timer for tasks.",
         "icon-name": "timer-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "cron-parser": {
         "title": "Cron Expression Parser",
         "description": "Translate complex cron jobs into human-readable text.",
         "icon-name": "time-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "CSS-box-shadow": {
         "title": "Box Shadow Generator",
         "description": "Visually design and export CSS box-shadows.",
         "icon-name": "construct-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "CSS-cursor": {
         "title": "CSS Cursor Gallery",
         "description": "Explore and test all standard CSS cursor styles.",
         "icon-name": "construct-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "CSS-gradient": {
         "title": "Gradient Generator",
         "description": "Design vibrant and modern CSS gradients.",
         "icon-name": "color-palette-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "CSV-to-JSON": {
         "title": "CSV to JSON Converter",
         "description": "Easily transform spreadsheet data into JSON.",
         "icon-name": "swap-horizontal-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "data-size": {
         "title": "Data Size Converter",
         "description": "Convert between KB, MB, GB, and more.",
         "icon-name": "layers-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "decision-wheel": {
         "title": "Decision Wheel",
         "description": "Spin the wheel to make quick choices.",
         "icon-name": "refresh-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "dice-roller": {
         "title": "Dice Roller",
         "description": "Roll random dice for games and more.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "emoji-picker": {
         "title": "Emoji Picker",
         "description": "Browse and copy emojis for your messages.",
         "icon-name": "happy-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "expense-tracker": {
         "title": "Expense Tracker",
         "description": "Manage your budget and track daily expenses.",
         "icon-name": "cash-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "fibonacci": {
         "title": "Fibonacci Gen",
         "description": "Generate Fibonacci sequence numbers up to N.",
         "icon-name": "analytics-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "flashcard-maker": {
         "title": "Flashcard Maker",
         "description": "Create and study with custom digital flashcards.",
         "icon-name": "clipboard-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "flexbox-playground": {
         "title": "Flexbox Playground",
         "description": "Experiment with and learn CSS Flexbox layouts.",
         "icon-name": "construct-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "font-preview": {
         "title": "Font Previewer",
         "description": "Preview and compare different web fonts easily.",
         "icon-name": "text-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "gradient-text": {
         "title": "Gradient Text Generator",
         "description": "Apply beautiful CSS gradients to your text.",
         "icon-name": "text-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "grid-layout": {
         "title": "CSS Grid Builder",
         "description": "Generate complex CSS Grid layouts visually.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "habit-tracker": {
         "title": "Habit Tracker",
         "description": "Build better routines and track your progress.",
         "icon-name": "checkbox-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "hash-generator": {
         "title": "Hash Generator",
         "description": "Generate SHA-256, MD5, and other secure hashes.",
         "icon-name": "finger-print-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "hex-to-rgb": {
         "title": "Hex to RGB Converter",
         "description": "Quickly convert color codes between Hex and RGB.",
         "icon-name": "swap-horizontal-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "html-entity": {
         "title": "HTML Entity Lookup",
         "description": "Find and copy HTML entity codes for symbols.",
         "icon-name": "code-slash-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "icon-search": {
         "title": "Icon Search",
         "description": "Search and preview common icon libraries.",
         "icon-name": "search-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "ip-lookup": {
         "title": "IP Lookup",
         "description": "Get location and network info from any IP.",
         "icon-name": "location-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "json-formatter": {
         "title": "JSON Formatter",
         "description": "Prettify and validate your JSON data.",
         "icon-name": "braces-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "json-path": {
         "title": "JSON Path Tester",
         "description": "Query and test JSON paths for data extraction.",
         "icon-name": "search-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "json-to-csv": {
         "title": "JSON to CSV",
         "description": "Convert JSON objects into CSV format easily.",
         "icon-name": "swap-horizontal-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "jwt-decoder": {
         "title": "JWT Decoder",
         "description": "Decode and inspect JSON Web Tokens securely.",
         "icon-name": "key-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "kanban-board": {
         "title": "Kanban Board",
         "description": "Organize your tasks with a modern Kanban flow.",
         "icon-name": "clipboard-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "keycode-info": {
         "title": "Keycode Info",
         "description": "Get JavaScript event codes for any key pressed.",
         "icon-name": "terminal-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "lorem-ipsum": {
         "title": "Lorem Ipsum Gen",
         "description": "Generate placeholder text for your designs.",
         "icon-name": "text-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "markdown-editor": {
         "title": "Markdown Editor",
         "description": "Write and preview Markdown with a live editor.",
         "icon-name": "create-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "markdown-preview": {
         "title": "Markdown Preview",
         "description": "Instantly render Markdown text into HTML.",
         "icon-name": "eye-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "markdown-table": {
         "title": "Markdown Table Maker",
         "description": "Build tables for Markdown documentation easily.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "metronome": {
         "title": "Metronome",
         "description": "Keep perfect time with an adjustable metronome.",
         "icon-name": "musical-notes-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "mortgage-calc": {
         "title": "Mortgage Calculator",
         "description": "Estimate your monthly mortgage and loan payments.",
         "icon-name": "calculator-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "notepad": {
         "title": "Quick Notepad",
         "description": "A simple space for quick notes and text storage.",
         "icon-name": "document-text-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "password-generator": {
         "title": "Password Generator",
         "description": "Generate strong, secure random passwords.",
         "icon-name": "keypad-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "password-strength": {
         "title": "Password Tester",
         "description": "Analyze the security and strength of your passwords.",
         "icon-name": "shield-checkmark-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "placeholder-image": {
         "title": "Placeholder Image",
         "description": "Generate placeholder images of any size.",
         "icon-name": "image-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "pomodoro": {
         "title": "Pomodoro Timer",
         "description": "Stay focused and productive with timed intervals.",
         "icon-name": "timer-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "prime-checker": {
         "title": "Prime Checker",
         "description": "Verify if any number is a prime number.",
         "icon-name": "analytics-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "px-to-rem": {
         "title": "PX to REM Converter",
         "description": "Convert pixel values to REM for responsive design.",
         "icon-name": "swap-horizontal-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "QR-code": {
         "title": "QR Code Generator",
         "description": "Create QR codes for URLs, text, and more.",
         "icon-name": "qr-code-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "random-number": {
         "title": "Random Generator",
         "description": "Generate random numbers within any range.",
         "icon-name": "key-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "regex-tester": {
         "title": "Regex Tester",
         "description": "Test and debug Regular Expressions in real-time.",
         "icon-name": "terminal-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "roman-numeral": {
         "title": "Roman Numeral Converter",
         "description": "Convert integers to Roman numerals and back.",
         "icon-name": "swap-horizontal-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "slug-generator": {
         "title": "URL Slug Generator",
         "description": "Transform titles into URL-friendly slugs.",
         "icon-name": "link-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "speed-converter": {
         "title": "Speed Converter",
         "description": "Convert between KM/H, MPH, and Knots.",
         "icon-name": "speedometer-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "SQL-formatter": {
         "title": "SQL Formatter",
         "description": "Prettify and format SQL queries for readability.",
         "icon-name": "code-working-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "stopwatch": {
         "title": "Stopwatch",
         "description": "Track elapsed time with precision lap support.",
         "icon-name": "timer-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "temp-converter": {
         "title": "Temp Converter",
         "description": "Convert between Celsius, Fahrenheit, and Kelvin.",
         "icon-name": "swap-horizontal-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "text-case": {
         "title": "Text Case Converter",
         "description": "Toggle between uppercase, lowercase, camelCase, etc.",
         "icon-name": "text-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "text-diff": {
         "title": "Text Diff Checker",
         "description": "Compare two texts and highlight the differences.",
         "icon-name": "git-compare-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "timestamp-converter": {
         "title": "Unix Timestamp",
         "description": "Convert Unix timestamps to human-readable dates.",
         "icon-name": "time-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "tip-calc": {
         "title": "Tip Calculator",
         "description": "Quickly calculate tips and split bills.",
         "icon-name": "calculator-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "todo-list": {
         "title": "Todo List",
         "description": "Manage your daily tasks and stay organized.",
         "icon-name": "list-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "typing-speed": {
         "title": "Typing Speed Test",
         "description": "Test your WPM and accuracy with live feedback.",
         "icon-name": "speedometer-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "unit-converter": {
         "title": "Unit Converter",
         "description": "Universal unit conversion for weight, length, etc.",
         "icon-name": "layers-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "url-encoder": {
         "title": "URL Encode/Decode",
         "description": "Safely encode and decode URL strings.",
         "icon-name": "link-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "url-parser": {
         "title": "URL Parser",
         "description": "Break down URLs into host, path, and params.",
         "icon-name": "link-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "UUID-generator": {
         "title": "UUID Generator",
         "description": "Generate unique V4 UUIDs for your projects.",
         "icon-name": "finger-print-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "word-counter": {
         "title": "Word Counter",
         "description": "Count words, characters, and sentences in text.",
         "icon-name": "text-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "XML-formatter": {
         "title": "XML Formatter",
         "description": "Validate and prettify XML documents easily.",
         "icon-name": "code-slash-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "YAML-to-JSON": {
         "title": "YAML to JSON",
         "description": "Convert YAML configuration files to JSON.",
         "icon-name": "swap-horizontal-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "tools"
     },
     "15-puzzle": {
         "title": "15 Puzzle",
         "description": "The classic sliding tile puzzle game.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "2048": {
         "title": "2048",
         "description": "Join the numbers and get to the 2048 tile!",
         "icon-name": "grid-outline",
-        "credit": "Gabriele Cirulli"
+        "credit": "Gabriele Cirulli",
+        "category": "games"
     },
     "aim-trainer": {
         "title": "Aim Trainer",
         "description": "Improve your mouse accuracy and reaction time.",
         "icon-name": "game-controller-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "ant-colony": {
         "title": "Ant Colony Sim",
         "description": "Watch ants forage and build their ecosystem.",
         "icon-name": "game-controller-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "asteroids": {
         "title": "Asteroids",
         "description": "Classic space shooter. Destroy the asteroids!",
         "icon-name": "flash-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "battleship": {
         "title": "Battleship",
         "description": "Sink the enemy's fleet in this tactical game.",
         "icon-name": "boat-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "blackjack": {
         "title": "Blackjack",
         "description": "Try your luck and aim for 21.",
         "icon-name": "card-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "breakout": {
         "title": "Breakout",
         "description": "Smash bricks with a ball and paddle.",
         "icon-name": "game-controller-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "brick-builder": {
         "title": "Brick Builder",
         "description": "A creative building game with colorful bricks.",
         "icon-name": "construct-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "bubble-shooter": {
         "title": "Bubble Shooter",
         "description": "Match and pop colored bubbles.",
         "icon-name": "game-controller-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "checkers": {
         "title": "Checkers",
         "description": "Standard board game of strategy and jump.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "chess-clock": {
         "title": "Chess Clock",
         "description": "Professional timer for competitive chess matches.",
         "icon-name": "timer-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "chinese-checkers": {
         "title": "Chinese Checkers",
         "description": "Traditional board game for multiple players.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "color-flood": {
         "title": "Color Flood",
         "description": "Flood the entire board with a single color.",
         "icon-name": "color-fill-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "color-match": {
         "title": "Color Match",
         "description": "Identify and match colors as fast as you can.",
         "icon-name": "color-palette-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "connect4": {
         "title": "Connect Four",
         "description": "Get four discs in a row to win.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "cookie-clicker": {
         "title": "Cookie Clicker",
         "description": "Click cookies and build a cookie empire.",
         "icon-name": "happy-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "crossword": {
         "title": "Daily Crossword",
         "description": "Test your vocabulary with a fun crossword puzzle.",
         "icon-name": "help-circle-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "dice-game": {
         "title": "Dice Duel",
         "description": "Competitive dice rolling game.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "dino-run": {
         "title": "Chrome Dino",
         "description": "Run and jump over obstacles as a T-Rex.",
         "icon-name": "game-controller-outline",
-        "credit": "Chrome"
+        "credit": "Chrome",
+        "category": "games"
     },
     "dots-and-boxes": {
         "title": "Dots and Boxes",
         "description": "Connect dots to form boxes and capture territory.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "drawing-canvas": {
         "title": "Drawing Canvas",
         "description": "Express your creativity with digital drawing.",
         "icon-name": "brush-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "flappy-bird": {
         "title": "Flappy Bird",
         "description": "Fly through pipes and set a high score.",
         "icon-name": "airplane-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "four-in-a-row": {
         "title": "4 In A Row",
         "description": "Strategic board game for two players.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "fruit-ninja": {
         "title": "Fruit Slasher",
         "description": "Slice fruit and avoid the bombs!",
         "icon-name": "flash-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "game-of-life": {
         "title": "Conway's Life",
         "description": "Fascinating simulation of cellular evolution.",
         "icon-name": "analytics-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "geography-quiz": {
         "title": "World Quiz",
         "description": "Test your knowledge of world geography.",
         "icon-name": "help-circle-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "go-game": {
         "title": "Go Board Game",
         "description": "Traditional board game of strategy and skill.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "gravity-balls": {
         "title": "Gravity Balls",
         "description": "Physics-based ball simulation and play.",
         "icon-name": "game-controller-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "hangman": {
         "title": "Hangman",
         "description": "Guess the word before the man is hung.",
         "icon-name": "help-circle-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "helicopter": {
         "title": "Helicopter Game",
         "description": "Fly through caves and avoid obstacles.",
         "icon-name": "airplane-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "hex-puzzle": {
         "title": "Hex Puzzle",
         "description": "Connect hexagonal pieces to solve puzzles.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "jigsaw-puzzle": {
         "title": "Jigsaw Puzzle",
         "description": "Solve puzzles by matching various pieces.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "lights-out": {
         "title": "Lights Out",
         "description": "Turn off all the lights on the board.",
         "icon-name": "flash-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "mancala": {
         "title": "Mancala",
         "description": "Classic stone-sowing strategy game.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "marble-run": {
         "title": "Marble Run",
         "description": "Watch marbles roll through complex tracks.",
         "icon-name": "game-controller-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "mastermind": {
         "title": "Mastermind",
         "description": "Crack the secret code in this logic game.",
         "icon-name": "keypad-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "match-3": {
         "title": "Match 3 Game",
         "description": "Swap and match 3 tiles to clear the board.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "math-sprint": {
         "title": "Math Sprint",
         "description": "Solve math problems against the clock.",
         "icon-name": "calculator-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "maze-generator": {
         "title": "Maze Maker",
         "description": "Generate and solve random labyrinths.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "memory": {
         "title": "Memory Match",
         "description": "Test your brain and find matching pairs.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "minesweeper": {
         "title": "Minesweeper",
         "description": "Classic logic puzzle game of clearing bombs.",
         "icon-name": "radio-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "music-pad": {
         "title": "Music Pad",
         "description": "Play sounds and create rhythms instantly.",
         "icon-name": "musical-notes-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "nimble": {
         "title": "Nimble Runner",
         "description": "Fast-paced running and jumping action.",
         "icon-name": "game-controller-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "nonogram": {
         "title": "Nonogram",
         "description": "Solve picture puzzles with grid logic.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "number-guess": {
         "title": "Number Guess",
         "description": "Guess the secret number within N tries.",
         "icon-name": "help-circle-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "othello": {
         "title": "Othello (Reversi)",
         "description": "Flip your opponent's discs to win territory.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "particle-sandbox": {
         "title": "Particle Sandbox",
         "description": "Simulate sand, water, and fire physics.",
         "icon-name": "analytics-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "pattern-match": {
         "title": "Pattern Match",
         "description": "Repeat the sequence and test your memory.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "picross": {
         "title": "Picross",
         "description": "Solve logic puzzles to reveal hidden pictures.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "pipe-connect": {
         "title": "Pipe Connect",
         "description": "Connect pipes to create a flow.",
         "icon-name": "construct-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "platformer": {
         "title": "Pixel Runner",
         "description": "A classic 2D platformer adventure.",
         "icon-name": "game-controller-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "pong": {
         "title": "Classic Pong",
         "description": "The original paddle and ball arcade game.",
         "icon-name": "tennisball-outline",
-        "credit": "Atari"
+        "credit": "Atari",
+        "category": "games"
     },
     "quiz-trivia": {
         "title": "Trivia Challenge",
         "description": "Answer questions across various categories.",
         "icon-name": "help-circle-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "reaction-time": {
         "title": "Reaction Test",
         "description": "Measure how fast you can respond to signals.",
         "icon-name": "speedometer-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "reflex-grid": {
         "title": "Reflex Grid",
         "description": "Click targets quickly to test your agility.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "rhythm-game": {
         "title": "Rhythm Beat",
         "description": "Hit the notes in time with the music.",
         "icon-name": "musical-notes-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "rock-paper-scissors": {
         "title": "Roshambo",
         "description": "Play against the computer in this classic choice game.",
         "icon-name": "hand-left-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "simon-says": {
         "title": "Simon Says",
         "description": "Follow the sequence of lights and sounds.",
         "icon-name": "color-fill-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "slot-machine": {
         "title": "Slot Machine",
         "description": "Try your luck on the virtual slots.",
         "icon-name": "cash-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "snake": {
         "title": "Retro Snake",
         "description": "Classic arcade snake game with modern visuals.",
         "icon-name": "analytics-outline",
-        "credit": "Retro Dev"
+        "credit": "Retro Dev",
+        "category": "games"
     },
     "sokoban": {
         "title": "Sokoban",
         "description": "Push boxes to their target locations.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "solitaire": {
         "title": "Solitaire",
         "description": "The classic card game of patience.",
         "icon-name": "card-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "space-invaders": {
         "title": "Space Invaders",
         "description": "Defend the Earth from waves of aliens.",
         "icon-name": "flash-outline",
-        "credit": "Taito"
+        "credit": "Taito",
+        "category": "games"
     },
     "speed-cards": {
         "title": "Speed Cards",
         "description": "Match and clear cards as fast as possible.",
         "icon-name": "card-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "stack-tower": {
         "title": "Stack Tower",
         "description": "Stack blocks as high as you can.",
         "icon-name": "layers-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "sudoku": {
         "title": "Sudoku",
         "description": "Fill the 9x9 grid with numbers correctly.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "tap-counter": {
         "title": "Tap Counter",
         "description": "Measure how many times you can tap in a minute.",
         "icon-name": "hand-left-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "target-shooter": {
         "title": "Target Shooter",
         "description": "Hit moving targets to score points.",
         "icon-name": "game-controller-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "tetris": {
         "title": "Tetris",
         "description": "Arrange falling blocks to clear lines.",
         "icon-name": "grid-outline",
-        "credit": "Alexey Pajitnov"
+        "credit": "Alexey Pajitnov",
+        "category": "games"
     },
     "tic-tac-toe": {
         "title": "Tic Tac Toe",
         "description": "Classic X and O game for two players.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "tictactoe-5x5": {
         "title": "Tic Tac Toe 5x5",
         "description": "An expanded 5x5 grid version of Tic Tac Toe.",
         "icon-name": "grid-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "tower-defense": {
         "title": "Tower Defense",
         "description": "Defend your base against waves of enemies.",
         "icon-name": "shield-checkmark-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "tower-of-hanoi": {
         "title": "Tower of Hanoi",
         "description": "Solve the classic mathematical disc puzzle.",
         "icon-name": "layers-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "typing-racer": {
         "title": "Typing Racer",
         "description": "Race against others by typing fast.",
         "icon-name": "speedometer-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "whack-a-mole": {
         "title": "Whack A Mole",
         "description": "Whack the moles as they pop up!",
         "icon-name": "game-controller-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "word-search": {
         "title": "Word Search",
         "description": "Find hidden words in the grid.",
         "icon-name": "search-outline",
-        "credit": "FOSSarium"
+        "credit": "FOSSarium",
+        "category": "games"
     },
     "wordle": {
         "title": "Wordle Clone",
         "description": "Guess the secret 5-letter word in 6 tries.",
         "icon-name": "help-circle-outline",
-        "credit": "Josh Wardle"
+        "credit": "Josh Wardle",
+        "category": "games"
     }
 }
