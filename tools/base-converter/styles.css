@@ -88,18 +88,18 @@ body {
     padding: 16px;
     border-radius: 12px;
     border: 1px solid var(--card-border);
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--card-bg);
     color: var(--text-color);
     font-family: 'JetBrains Mono', monospace;
     font-size: 1.2rem;
     outline: none;
     transition: all 0.3s ease;
     box-sizing: border-box;
+    backdrop-filter: blur(5px);
 }
 
 .field input:focus {
     border-color: var(--accent-color);
-    background: rgba(88, 166, 255, 0.05);
     transform: translateY(-2px);
 }
 
