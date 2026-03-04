@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clock Widget - FOSSarium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <title>Modern Clock - FOSSarium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 
     <!-- Ionicons -->
@@ -29,18 +29,58 @@
 
     <div class="app-container tool-container-wrapper">
         <div class="tool-header">
-            <h1>Clock Widget</h1>
-            <p class="tool-subtitle">A precision-tuned analog and digital timepiece for your workspace.</p>
+            <h1>Spectrum Clock</h1>
+            <p class="tool-subtitle">Precision timekeeping with customizable designs and world time zones.</p>
         </div>
 
-        <div class="clock-card">
-            <div class="analog-section">
-                <canvas id="clock" width="300" height="300"></canvas>
+        <div class="clock-layout">
+            <div class="tool-card settings-pane">
+                <div class="field">
+                    <label>Time Zone</label>
+                    <select id="timezone-select">
+                        <option value="local">Local Time</option>
+                        <option value="UTC">UTC (GMT)</option>
+                        <option value="America/New_York">New York (EST)</option>
+                        <option value="Europe/London">London (GMT/BST)</option>
+                        <option value="Europe/Paris">Paris (CET)</option>
+                        <option value="Asia/Tokyo">Tokyo (JST)</option>
+                        <option value="Asia/Dubai">Dubai (GST)</option>
+                        <option value="Asia/Kolkata">India (IST)</option>
+                        <option value="Australia/Sydney">Sydney (AEST)</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Clock Design</label>
+                    <select id="design-select">
+                        <option value="modern">Modern Spectrum</option>
+                        <option value="minimal">Minimalist</option>
+                        <option value="classic">Classic Station</option>
+                        <option value="roman">Roman Elegant</option>
+                        <option value="dash">Digital Dash</option>
+                        <option value="neon">Cyber Neon</option>
+                        <option value="tech">Cyber Tech</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="hour-format" checked>
+                        <span class="checkmark"></span>
+                        12-Hour Mode (AM/PM)
+                    </label>
+                </div>
             </div>
 
-            <div class="digital-section">
-                <div class="digital" id="digital">00:00:00</div>
-                <div class="date" id="date">Monday, March 1, 2026</div>
+            <div class="tool-card clock-pane">
+                <div class="analog-section">
+                    <canvas id="clock" width="320" height="320"></canvas>
+                </div>
+
+                <div class="digital-section">
+                    <div class="digital" id="digital">00:00:00</div>
+                    <div class="date" id="date">Monday, March 4, 2026</div>
+                </div>
             </div>
         </div>
     </div>
