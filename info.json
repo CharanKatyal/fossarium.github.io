@@ -181,13 +181,6 @@
         "credit": "FOSSarium",
         "category": "tools"
     },
-    "data-size": {
-        "title": "Data Size Converter",
-        "description": "Convert between KB, MB, GB, and more.",
-        "icon-name": "layers-outline",
-        "credit": "FOSSarium",
-        "category": "tools"
-    },
     "decision-wheel": {
         "title": "Decision Wheel",
         "description": "Spin the wheel to make quick choices.",
