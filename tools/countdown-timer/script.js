@@ -16,6 +16,30 @@ function formatTime(s) {
     return [h, m, ss].map(v => String(v).padStart(2, "0")).join(":");
 }
 
+function playAlertSound() {
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const playBeep = (freq, startTime, duration) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, startTime);
+            gain.gain.setValueAtTime(0.1, startTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, startTime + duration);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(startTime);
+            osc.stop(startTime + duration);
+        };
+        // Play a sequence of beeps
+        playBeep(880, ctx.currentTime, 0.2);
+        playBeep(880, ctx.currentTime + 0.3, 0.2);
+        playBeep(880, ctx.currentTime + 0.6, 0.4);
+    } catch (e) {
+        console.error("Audio Context failed:", e);
+    }
+}
+
 function startTimer() {
     if (running) {
         clearInterval(timer);
@@ -45,7 +69,8 @@ function startTimer() {
             running = false;
             display.textContent = "00:00:00";
             startBtn.innerHTML = '<ion-icon name="play-outline"></ion-icon> Start';
-            alert("Time's up!");
+            playAlertSound();
+            setTimeout(() => alert("Time's up!"), 100);
         }
     }, 1000);
 }
