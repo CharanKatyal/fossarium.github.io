@@ -461,13 +461,6 @@
         "credit": "FOSSarium",
         "category": "tools"
     },
-    "speed-converter": {
-        "title": "Speed Converter",
-        "description": "Convert between KM/H, MPH, and Knots.",
-        "icon-name": "speedometer-outline",
-        "credit": "FOSSarium",
-        "category": "tools"
-    },
     "SQL-formatter": {
         "title": "SQL Formatter",
         "description": "Prettify and format SQL queries for readability.",
@@ -948,7 +941,7 @@
         "title": "Classic Pong",
         "description": "The original paddle and ball arcade game.",
         "icon-name": "tennisball-outline",
-        "credit": "Atari",
+        "credit": "FOSSarium, Atari",
         "category": "games"
     },
     "quiz-trivia": {
