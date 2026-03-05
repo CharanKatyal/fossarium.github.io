@@ -1,5 +1,14 @@
 let timeLeft = 25 * 60, timer = null, isWork = true, sessions = 0;
-const display = document.getElementById('timer'), label = document.getElementById('label'), startBtn = document.getElementById('start-btn');
+let audioCtx = null;
+let soundInterval = null;
+
+const display = document.getElementById('timer'), 
+    label = document.getElementById('label'), 
+    startBtn = document.getElementById('start-btn'),
+    modalOverlay = document.getElementById('modal-overlay'),
+    modalTitle = document.getElementById('modal-title'),
+    modalMessage = document.getElementById('modal-message'),
+    modalOk = document.getElementById('modal-ok');
 
 function updateDisplay() { 
     const m = Math.floor(timeLeft / 60).toString().padStart(2, '0'); 
@@ -7,27 +16,46 @@ function updateDisplay() {
     display.textContent = m + ':' + s; 
 }
 
-function playAlertSound() {
-    try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const playBeep = (freq, startTime, duration) => {
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, startTime);
-            gain.gain.setValueAtTime(0.1, startTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, startTime + duration);
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start(startTime);
-            osc.stop(startTime + duration);
-        };
-        // Sequence for Pomodoro: Higher pitch then lower
-        playBeep(987.77, ctx.currentTime, 0.3); // B5
-        playBeep(783.99, ctx.currentTime + 0.4, 0.5); // G5
-    } catch (e) {
-        console.error("Audio Context failed:", e);
+function playBeep() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    const playNote = (freq, startTime, duration) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, startTime);
+        gain.gain.setValueAtTime(0.1, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, startTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(startTime);
+        osc.stop(startTime + duration);
+    };
+
+    playNote(987.77, audioCtx.currentTime, 0.3);
+    playNote(783.99, audioCtx.currentTime + 0.4, 0.5);
+}
+
+function startAlert() {
+    playBeep();
+    soundInterval = setInterval(playBeep, 2000);
+    
+    if (isWork) {
+        modalTitle.textContent = "Work Session Finished!";
+        modalMessage.textContent = "Take a well-deserved break.";
+    } else {
+        modalTitle.textContent = "Break Finished!";
+        modalMessage.textContent = "Time to get back to work.";
     }
+    modalOverlay.classList.remove("hidden");
+}
+
+function stopAlert() {
+    if (soundInterval) {
+        clearInterval(soundInterval);
+        soundInterval = null;
+    }
+    modalOverlay.classList.add("hidden");
 }
 
 function tick() { 
@@ -36,7 +64,7 @@ function tick() {
     if (timeLeft <= 0) { 
         clearInterval(timer); 
         timer = null; 
-        playAlertSound();
+        
         if (isWork) { 
             sessions++; 
             document.getElementById('session-count').textContent = sessions; 
@@ -48,9 +76,10 @@ function tick() {
             timeLeft = 25 * 60; 
             label.textContent = 'Work Session'; 
         } 
+        
         updateDisplay(); 
         startBtn.textContent = 'Start'; 
-        setTimeout(() => alert(isWork ? "Break finished! Time to work." : "Work session finished! Take a break."), 100);
+        startAlert();
     } 
 }
 
@@ -68,6 +97,7 @@ startBtn.addEventListener('click', () => {
 document.getElementById('reset-btn').addEventListener('click', () => { 
     clearInterval(timer); 
     timer = null; 
+    stopAlert();
     isWork = true; 
     timeLeft = 25 * 60; 
     label.textContent = 'Work Session'; 
@@ -75,6 +105,7 @@ document.getElementById('reset-btn').addEventListener('click', () => {
     updateDisplay(); 
 });
 
+modalOk.addEventListener('click', stopAlert);
 
 function initTheme() {
     const themeToggleBtn = document.getElementById('theme-toggle');
@@ -83,13 +114,7 @@ function initTheme() {
     const icon = themeToggleBtn.querySelector('ion-icon');
 
     const savedTheme = localStorage.getItem('fossarium-theme');
-    if (savedTheme === 'light') {
-        document.documentElement.classList.add('light-theme');
-        if (icon) icon.setAttribute('name', 'moon-outline');
-    } else if (savedTheme === 'dark') {
-        document.documentElement.classList.remove('light-theme');
-        if (icon) icon.setAttribute('name', 'sunny-outline');
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
         document.documentElement.classList.add('light-theme');
         if (icon) icon.setAttribute('name', 'moon-outline');
     }

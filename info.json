@@ -997,7 +997,7 @@
         "title": "Retro Snake",
         "description": "Classic arcade snake game with modern visuals.",
         "icon-name": "analytics-outline",
-        "credit": "Retro Dev",
+        "credit": "FOSSarium, Retro Dev",
         "category": "games"
     },
     "sokoban": {
@@ -1018,7 +1018,7 @@
         "title": "Space Invaders",
         "description": "Defend the Earth from waves of aliens.",
         "icon-name": "flash-outline",
-        "credit": "Taito",
+        "credit": "FOSSarium, Taito",
         "category": "games"
     },
     "speed-cards": {
@@ -1116,7 +1116,7 @@
         "title": "Wordle Clone",
         "description": "Guess the secret 5-letter word in 6 tries.",
         "icon-name": "help-circle-outline",
-        "credit": "Josh Wardle",
+        "credit": "FOSSarium, Josh Wardle",
         "category": "games"
     }
 }

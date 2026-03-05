@@ -1,6 +1,8 @@
 let remaining = 0;
 let timer = null;
 let running = false;
+let audioCtx = null;
+let soundInterval = null;
 
 const display = document.getElementById("display");
 const hrsInput = document.getElementById("hrs");
@@ -8,6 +10,8 @@ const minsInput = document.getElementById("mins");
 const secsInput = document.getElementById("secs");
 const startBtn = document.getElementById("start-btn");
 const resetBtn = document.getElementById("reset-btn");
+const modalOverlay = document.getElementById("modal-overlay");
+const modalOk = document.getElementById("modal-ok");
 
 function formatTime(s) {
     const h = Math.floor(s / 3600);
@@ -16,28 +20,37 @@ function formatTime(s) {
     return [h, m, ss].map(v => String(v).padStart(2, "0")).join(":");
 }
 
-function playAlertSound() {
-    try {
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-        const playBeep = (freq, startTime, duration) => {
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, startTime);
-            gain.gain.setValueAtTime(0.1, startTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, startTime + duration);
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start(startTime);
-            osc.stop(startTime + duration);
-        };
-        // Play a sequence of beeps
-        playBeep(880, ctx.currentTime, 0.2);
-        playBeep(880, ctx.currentTime + 0.3, 0.2);
-        playBeep(880, ctx.currentTime + 0.6, 0.4);
-    } catch (e) {
-        console.error("Audio Context failed:", e);
+function playBeep() {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+    
+    gain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+    
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.5);
+}
+
+function startAlert() {
+    playBeep();
+    soundInterval = setInterval(playBeep, 1500);
+    modalOverlay.classList.remove("hidden");
+}
+
+function stopAlert() {
+    if (soundInterval) {
+        clearInterval(soundInterval);
+        soundInterval = null;
     }
+    modalOverlay.classList.add("hidden");
 }
 
 function startTimer() {
@@ -69,14 +82,14 @@ function startTimer() {
             running = false;
             display.textContent = "00:00:00";
             startBtn.innerHTML = '<ion-icon name="play-outline"></ion-icon> Start';
-            playAlertSound();
-            setTimeout(() => alert("Time's up!"), 100);
+            startAlert();
         }
     }, 1000);
 }
 
 function resetTimer() {
     clearInterval(timer);
+    stopAlert();
     running = false;
     remaining = 0;
     display.textContent = "00:00:00";
@@ -105,4 +118,5 @@ function initTheme() {
 
 startBtn.addEventListener("click", startTimer);
 resetBtn.addEventListener("click", resetTimer);
+modalOk.addEventListener("click", stopAlert);
 initTheme();
