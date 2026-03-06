@@ -130,7 +130,6 @@ input[type="color"] {
 
 input[type="range"] {
     flex: 1;
-    -webkit-appearance: none;
     height: 6px;
     background: var(--card-border);
     border-radius: 5px;
