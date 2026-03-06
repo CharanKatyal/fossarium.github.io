@@ -37,7 +37,10 @@
             <div class="input-section">
                 <div class="field">
                     <label for="count">Sequence Length</label>
-                    <input type="number" id="count" value="10" min="1" max="100">
+                    <div class="input-wrapper">
+                        <input type="number" id="count" value="10" min="1" max="100">
+                        <span class="input-unit">Terms</span>
+                    </div>
                 </div>
                 <button onclick="gen()" class="btn primary-btn">
                     <ion-icon name="flash-outline"></ion-icon> Generate Sequence
@@ -45,11 +48,22 @@
             </div>
 
             <div class="result-area">
-                <div class="result-label">Generated Sequence</div>
-                <div class="result-text" id="result">0, 1, 1, 2, 3, 5, 8, 13, 21, 34</div>
-                <button class="copy-btn" id="copy-btn" title="Copy to clipboard">
-                    <ion-icon name="copy-outline"></ion-icon> Copy
-                </button>
+                <div class="result-header">
+                    <label>Generated Sequence</label>
+                    <button class="icon-btn copy-btn" id="copy-btn" title="Copy to clipboard">
+                        <ion-icon name="copy-outline"></ion-icon>
+                    </button>
+                </div>
+                <div class="result-scroll">
+                    <code id="result">0, 1, 1, 2, 3, 5, 8, 13, 21, 34</code>
+                </div>
+            </div>
+
+            <div class="stats-footer">
+                <div class="stat-item">
+                    <label>Growth Pattern</label>
+                    <span>Exponential</span>
+                </div>
             </div>
         </div>
     </div>

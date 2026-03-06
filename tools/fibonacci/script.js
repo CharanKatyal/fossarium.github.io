@@ -35,12 +35,14 @@ function initTheme() {
 copyBtn.addEventListener("click", () => {
     navigator.clipboard.writeText(resultEl.textContent);
     const icon = copyBtn.querySelector('ion-icon');
-    const originalText = copyBtn.innerHTML;
-    copyBtn.innerHTML = '<ion-icon name="checkmark-outline"></ion-icon> Copied';
-    copyBtn.style.color = 'var(--accent-color)';
+    const originalIcon = icon.getAttribute('name');
+    
+    copyBtn.classList.add('success');
+    icon.setAttribute('name', 'checkmark-outline');
+    
     setTimeout(() => {
-        copyBtn.innerHTML = originalText;
-        copyBtn.style.color = '';
+        copyBtn.classList.remove('success');
+        icon.setAttribute('name', originalIcon);
     }, 1500);
 });
 
