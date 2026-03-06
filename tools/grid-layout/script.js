@@ -1,52 +1,109 @@
-const colsInput = document.getElementById('cols');
-const rowsInput = document.getElementById('rows');
+const colSettings = document.getElementById('col-settings');
+const rowSettings = document.getElementById('row-settings');
+const addColBtn = document.getElementById('add-col-btn');
+const addRowBtn = document.getElementById('add-row-btn');
 const colGapInput = document.getElementById('col-gap');
 const rowGapInput = document.getElementById('row-gap');
 const container = document.getElementById('container');
 const codeEl = document.getElementById('code');
 const copyBtn = document.getElementById('copy-btn');
 
-function update() {
-    const cols = colsInput.value.trim() || '1fr 1fr 1fr';
-    const rows = rowsInput.value.trim() || '1fr 1fr';
+let columns = ['1fr', '1fr', '1fr'];
+let rows = ['1fr', '1fr'];
+
+function createTrackItem(type, index, value) {
+    const div = document.createElement('div');
+    div.className = 'track-item';
+    
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = value;
+    input.placeholder = 'e.g. 1fr, 200px, 20%';
+    input.addEventListener('input', (e) => {
+        if (type === 'col') columns[index] = e.target.value;
+        else rows[index] = e.target.value;
+        updateGrid();
+    });
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'icon-btn small-btn delete-btn';
+    delBtn.innerHTML = '<ion-icon name="trash-outline"></ion-icon>';
+    delBtn.title = `Delete ${type === 'col' ? 'Column' : 'Row'}`;
+    delBtn.addEventListener('click', () => {
+        if (type === 'col') {
+            if (columns.length > 1) {
+                columns.splice(index, 1);
+                renderSettings('col');
+            }
+        } else {
+            if (rows.length > 1) {
+                rows.splice(index, 1);
+                renderSettings('row');
+            }
+        }
+        updateGrid();
+    });
+
+    div.appendChild(input);
+    div.appendChild(delBtn);
+    return div;
+}
+
+function renderSettings(type) {
+    const target = type === 'col' ? colSettings : rowSettings;
+    const data = type === 'col' ? columns : rows;
+    target.innerHTML = '';
+    data.forEach((val, i) => {
+        target.appendChild(createTrackItem(type, i, val));
+    });
+}
+
+function updateGrid() {
+    const colTracks = columns.join(' ');
+    const rowTracks = rows.join(' ');
     const colGap = colGapInput.value || 0;
     const rowGap = rowGapInput.value || 0;
 
-    try {
-        container.style.gridTemplateColumns = cols;
-        container.style.gridTemplateRows = rows;
-        container.style.columnGap = colGap + 'px';
-        container.style.rowGap = rowGap + 'px';
+    container.style.display = 'grid';
+    container.style.gridTemplateColumns = colTracks;
+    container.style.gridTemplateRows = rowTracks;
+    container.style.columnGap = colGap + 'px';
+    container.style.rowGap = rowGap + 'px';
 
-        // Count items based on gaps/spaces
-        const colCount = cols.split(/\s+/).length;
-        const rowCount = rows.split(/\s+/).length;
-        const total = colCount * rowCount;
+    // Clear and refill cells
+    container.innerHTML = '';
+    const totalCells = columns.length * rows.length;
+    for (let i = 1; i <= totalCells; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'grid-cell';
+        cell.textContent = i;
+        container.appendChild(cell);
+    }
 
-        if (total > 0 && total < 200) {
-            container.innerHTML = '';
-            for (let i = 1; i <= total; i++) {
-                const div = document.createElement('div');
-                div.className = 'grid-cell';
-                div.textContent = i;
-                container.appendChild(div);
-            }
-        }
-
-        codeEl.textContent = `.grid-container {
+    // Update code output
+    codeEl.textContent = `.grid-container {
   display: grid;
-  grid-template-columns: ${cols};
-  grid-template-rows: ${rows};
+  grid-template-columns: ${colTracks};
+  grid-template-rows: ${rowTracks};
   column-gap: ${colGap}px;
   row-gap: ${rowGap}px;
 }`;
-    } catch (e) {
-        // Silently fail for invalid CSS grid syntax during typing
-    }
 }
 
-[colsInput, rowsInput, colGapInput, rowGapInput].forEach(el => {
-    el.addEventListener('input', update);
+addColBtn.addEventListener('click', () => {
+    columns.push('1fr');
+    renderSettings('col');
+    updateGrid();
+});
+
+addRowBtn.addEventListener('click', () => {
+    rows.push('1fr');
+    renderSettings('row');
+    updateGrid();
+});
+
+[colGapInput, rowGapInput].forEach(el => {
+    el.addEventListener('input', updateGrid);
 });
 
 copyBtn.addEventListener('click', () => {
@@ -94,4 +151,6 @@ function initTheme() {
 }
 
 initTheme();
-update();
+renderSettings('col');
+renderSettings('row');
+updateGrid();

@@ -17,10 +17,32 @@
         <div class="tool-header"><h1>CSS Grid Generator</h1><p class="tool-subtitle">Visually create complex grid layouts and export the code.</p></div>
         <div class="grid-layout">
             <div class="tool-card controls-pane">
-                <div class="field"><label for="cols">Columns</label><input type="text" id="cols" value="1fr 1fr 1fr"></div>
-                <div class="field"><label for="rows">Rows</label><input type="text" id="rows" value="1fr 1fr"></div>
-                <div class="field"><label for="col-gap">Column Gap</label><input type="number" id="col-gap" value="20" min="0"></div>
-                <div class="field"><label for="row-gap">Row Gap</label><input type="number" id="row-gap" value="20" min="0"></div>
+                <div class="control-group">
+                    <div class="group-header">
+                        <label>Columns</label>
+                        <button id="add-col-btn" class="icon-btn small-btn" title="Add Column"><ion-icon name="add-outline"></ion-icon></button>
+                    </div>
+                    <div id="col-settings" class="track-settings"></div>
+                </div>
+
+                <div class="control-group">
+                    <div class="group-header">
+                        <label>Rows</label>
+                        <button id="add-row-btn" class="icon-btn small-btn" title="Add Row"><ion-icon name="add-outline"></ion-icon></button>
+                    </div>
+                    <div id="row-settings" class="track-settings"></div>
+                </div>
+
+                <div class="gap-controls">
+                    <div class="field">
+                        <label for="col-gap">Column Gap (px)</label>
+                        <input type="number" id="col-gap" value="20" min="0">
+                    </div>
+                    <div class="field">
+                        <label for="row-gap">Row Gap (px)</label>
+                        <input type="number" id="row-gap" value="20" min="0">
+                    </div>
+                </div>
             </div>
             <div class="tool-card preview-pane"><div class="grid-container" id="container"></div></div>
         </div>
