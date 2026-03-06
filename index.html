@@ -5,22 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FOSSarium - Premium FOSS Collection</title>
+    <!-- Modern Font: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
     <link rel="icon" href="./icon.svg">
+    <!-- Ionicons for beautiful icons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body>
     <script>
-        // Prevent FOUC (Flash of Unstyled Content) by setting theme immediately
+        /**
+         * Prevent FOUC (Flash of Unstyled Content) by setting theme immediately
+         * Translated from PHP-embedded script
+         */
         const savedTheme = localStorage.getItem('fossarium-theme');
         if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
             document.documentElement.classList.add('light-theme');
         }
     </script>
-    
     <div class="background-blobs">
         <div class="blob blob-1"></div>
         <div class="blob blob-2"></div>
@@ -48,18 +52,24 @@
         </header>
 
         <main class="app-main">
+            <!-- Tools Section -->
             <section class="category-section" id="tools-section">
                 <div class="section-header">
                     <h2><ion-icon name="hammer-outline"></ion-icon> Tools</h2>
                 </div>
-                <div class="item-grid" id="tools-grid"></div>
+                <div class="item-grid" id="tools-grid">
+                    <!-- Dynamic Tool Cards will be injected here via JavaScript -->
+                </div>
             </section>
 
+            <!-- Games Section -->
             <section class="category-section" id="games-section">
                 <div class="section-header">
                     <h2><ion-icon name="game-controller-outline"></ion-icon> Games</h2>
                 </div>
-                <div class="item-grid" id="games-grid"></div>
+                <div class="item-grid" id="games-grid">
+                    <!-- Dynamic Game Cards will be injected here via JavaScript -->
+                </div>
             </section>
         </main>
 
@@ -70,83 +80,123 @@
 
     </div>
 
+    <!-- Translation of PHP Logic to Client-Side JavaScript -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Helper function to mimic PHP's htmlspecialchars() to prevent XSS
-            function escapeHTML(str) {
-                if (typeof str !== 'string') return str;
-                return str.replace(/[&<>'"]/g, 
-                    tag => ({
-                        '&': '&amp;',
-                        '<': '&lt;',
-                        '>': '&gt;',
-                        "'": '&#39;',
-                        '"': '&quot;'
-                    }[tag] || tag)
-                );
-            }
+        /**
+         * Dynamic Tool/Game Card Generator for FOSSarium
+         * Translated from PHP to JavaScript
+         */
 
-            // Helper function to mimic PHP's ucwords(str_replace('-', ' ', $str))
-            function formatTitle(str) {
-                return str.replace(/-/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
-            }
+        // Global cache for metadata
+        let project_metadata = null;
 
-            // Fetch and render the data
-            async function loadFossariumData() {
+        /**
+         * Helper function to mimic PHP's htmlspecialchars
+         * @param {string} text 
+         * @returns {string}
+         */
+        function escapeHtml(text) {
+            if (!text) return "";
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.toString().replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        /**
+         * Helper function to mimic PHP's ucwords(str_replace('-', ' ', $str))
+         * @param {string} str 
+         * @returns {string}
+         */
+        function formatTitle(str) {
+            return str.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        }
+
+        /**
+         * Fetches project metadata from info.json
+         * Equivalent to PHP'getProjectMetadata()
+         */
+        async function getProjectMetadata() {
+            if (project_metadata === null) {
                 try {
-                    // Note: This requires a local web server to bypass CORS issues!
-                    const response = await fetch('info.json');
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    const metadata = await response.json();
-
-                    // Generate HTML for a specific category
-                    function generateCategoryGrid(targetCategory) {
-                        let html = "";
-                        let index = 1;
-
-                        for (const [folderName, info] of Object.entries(metadata)) {
-                            const category = info.category || '';
-
-                            if (category === targetCategory) {
-                                const title = info.title || formatTitle(folderName);
-                                const description = info.description || "Modern FOSS tool.";
-                                const icon = info['icon-name'] || 'cube-outline';
-                                const credit = info.credit || "";
-
-                                const path = `${targetCategory}/${folderName}/index.html`;
-                                const gradientClass = `gradient-${(index % 9) + 1}`;
-                                const creditHtml = credit ? `<div class="card-credit">Credit: ${escapeHTML(credit)}</div>` : '';
-
-                                html += `
-                                    <a target="_blank" rel="noopener noreferrer" href="${path}" class="item-card" data-title="${escapeHTML(title)}">
-                                        ${creditHtml}
-                                        <div class="card-icon ${gradientClass}"><ion-icon name="${icon}"></ion-icon></div>
-                                        <div class="card-content">
-                                            <h3>${escapeHTML(title)}</h3>
-                                            <p>${escapeHTML(description)}</p>
-                                        </div>
-                                    </a>\n`;
-                                index++;
-                            }
-                        }
-                        return html;
-                    }
-
-                    // Inject the generated HTML into the DOM
-                    document.getElementById('tools-grid').innerHTML = generateCategoryGrid('tools');
-                    document.getElementById('games-grid').innerHTML = generateCategoryGrid('games');
-
+                    const response = await fetch('./info.json');
+                    if (!response.ok) throw new Error('Metadata file not found');
+                    project_metadata = await response.json();
                 } catch (error) {
-                    console.error("Failed to load project metadata:", error);
-                    document.getElementById('tools-grid').innerHTML = "<p>Error loading tools.</p>";
-                    document.getElementById('games-grid').innerHTML = "<p>Error loading games.</p>";
+                    console.error("Error loading metadata:", error);
+                    project_metadata = {};
                 }
             }
+            return project_metadata;
+        }
 
-            // Execute the function
-            loadFossariumData();
-        });
+        /**
+         * Generates HTML for a specific category
+         * Equivalent to PHP generateCategoryGrid($targetCategory)
+         * @param {string} targetCategory 
+         */
+        async function generateCategoryGrid(targetCategory) {
+            let html = "";
+            let index = 1;
+            const metadata = await getProjectMetadata();
+
+            for (const folderName in metadata) {
+                if (Object.prototype.hasOwnProperty.call(metadata, folderName)) {
+                    const info = metadata[folderName];
+                    const category = info.category ? info.category : '';
+
+                    if (category === targetCategory) {
+                        const title = info.title ? info.title : formatTitle(folderName);
+                        const description = info.description ? info.description : "Modern FOSS tool.";
+                        const icon = info['icon-name'] ? info['icon-name'] : 'cube-outline';
+                        const credit = info.credit ? info.credit : "";
+
+                        // Path depends on the category directory
+                        const path = targetCategory + '/' + folderName + '/index.html';
+
+                        const gradientClass = "gradient-" + ((index % 9) + 1);
+                        const creditHtml = credit ? `<div class="card-credit">Credit: ${escapeHtml(credit)}</div>` : '';
+
+                        html += `                    <a target="_blank" rel="noopener noreferrer" href="${path}" class="item-card" data-title="${escapeHtml(title)}">
+                        ${creditHtml}
+                        <div class="card-icon ${gradientClass}"><ion-icon name="${icon}"></ion-icon></div>
+                        <div class="card-content">
+                            <h3>${escapeHtml(title)}</h3>
+                            <p>${escapeHtml(description)}</p>
+                        </div>
+                    </a>\n`;
+                        index++;
+                    }
+                }
+            }
+            return html;
+        }
+
+        /**
+         * Initialize the grids on page load
+         */
+        async function initGrids() {
+            const toolsGrid = document.getElementById('tools-grid');
+            const gamesGrid = document.getElementById('games-grid');
+
+            if (toolsGrid) {
+                toolsGrid.innerHTML = await generateCategoryGrid('tools');
+            }
+            if (gamesGrid) {
+                gamesGrid.innerHTML = await generateCategoryGrid('games');
+            }
+        }
+
+        // Run initialization
+        document.addEventListener('DOMContentLoaded', initGrids);
     </script>
+
+    <!-- Original external script -->
+    <script src="main.js"></script>
 </body>
 
 </html>
