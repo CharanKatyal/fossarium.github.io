@@ -127,7 +127,6 @@ input[type="range"] {
     background: var(--card-border);
     border-radius: 5px;
     outline: none;
-    -webkit-appearance: none;
 }
 
 input[type="range"]::-webkit-slider-thumb {

@@ -4,41 +4,39 @@ const barWidthSelect = document.getElementById("bar-width");
 const barHeightInput = document.getElementById("bar-height");
 const downloadBtn = document.getElementById("download-png");
 
-// CODE128 Table B encoding (simplified for most common characters)
-const code128Table = {
-    ' ': '11011001100', '!': '11001101100', '"': '11001100110', '#': '10010011000', '$': '10010001100',
-    '%': '10001001100', '&': '10011001000', '\'': '10011000100', '(': '10001100100', ')': '11001001000',
-    '*': '11001000100', '+': '11000100100', ',': '10110011100', '-': '10011011100', '.': '10011001110',
-    '/': '10111001100', '0': '10011101100', '1': '10011100110', '2': '11001110100', '3': '11001110010',
-    '4': '11011100100', '5': '11011100010', '6': '11011101100', '7': '11011100110', '8': '11101101100',
-    '9': '11101100110', ':': '11100101100', ';': '11100100110', '<': '11101101100', '=': '11101100110',
-    '>': '11100110110', '?': '11100110011', '@': '11011011000', 'A': '11011000110', 'B': '11000110110',
-    'C': '10101111000', 'D': '10100011110', 'E': '10001011110', 'F': '10111101000', 'G': '10111100010',
-    'H': '11110101000', 'I': '11110100010', 'J': '10111011110', 'K': '10111101110', 'L': '11101011110',
-    'M': '11110101110', 'N': '11011101110', 'O': '11011110110', 'P': '11110111010', 'Q': '11101111010',
-    'R': '11011111010', 'S': '11101111101', 'T': '11111011010', 'U': '11111011101', 'V': '11111101101',
-    'W': '11111110110', 'X': '11111110101', 'Y': '11111011110', 'Z': '11111101110', '[': '11111110111',
-    '\\': '11101111110', ']': '11110111110', '^': '11111101111', '_': '11111110111', '`': '10110011110',
-    'a': '10111100110', 'b': '11101100111', 'c': '11100110111', 'd': '11011011110', 'e': '11011110110',
-    'f': '11110110110', 'g': '11110110110', 'h': '11111011011', 'i': '11111101101', 'j': '11111110110',
-    'k': '11111110101', 'l': '11111011110', 'm': '11111101110', 'n': '11111110111', 'o': '11101111110',
-    'p': '11110111110', 'q': '11111101111', 'r': '11111110111', 's': '10110011110', 't': '10111100110',
-    'u': '11101100111', 'v': '11100110111', 'w': '11011011110', 'x': '11011110110', 'y': '11110110110',
-    'z': '11110110110', '{': '11111011011', '|': '11111101101', '}': '11111110110', '~': '11111110101'
-};
+// Full Code 128 pattern table (Values 0 to 106)
+const CODE128_PATTERNS = [
+    "212222", "222122", "222221", "121223", "121322", "131222", "122213", "122312", "132212", "221213",
+    "221312", "231212", "112232", "122132", "122231", "113222", "123122", "123221", "223211", "221132",
+    "221231", "213212", "223112", "312131", "311222", "321122", "321221", "312212", "322112", "322211",
+    "212123", "212321", "232121", "111323", "131123", "131321", "112313", "132113", "132311", "211313",
+    "231113", "231311", "112133", "112331", "132131", "113123", "113321", "133121", "313121", "211331",
+    "231131", "213113", "213311", "213131", "311123", "311321", "331121", "312113", "312311", "332111",
+    "314111", "221411", "431111", "111224", "111422", "121124", "121421", "141122", "141221", "112214",
+    "112412", "122114", "122411", "142112", "142211", "241211", "221114", "413111", "241112", "134111",
+    "111242", "121142", "121241", "114212", "124112", "124211", "411212", "421112", "421211", "212141",
+    "214121", "412121", "111143", "111341", "131141", "114113", "114311", "411113", "411311", "113141",
+    "114131", "311141", "411131", "211412", "211214", "211232", "2331112"
+];
 
-const START_B = '11010010000';
-const STOP = '1100011101011';
+function widthsToBinary(widths) {
+    let binary = '';
+    let isBlack = true; // Every character starts with a black bar
+    for (let i = 0; i < widths.length; i++) {
+        binary += (isBlack ? '1' : '0').repeat(parseInt(widths[i]));
+        isBlack = !isBlack;
+    }
+    return binary;
+}
 
 function calculateChecksum(text) {
-    let sum = 104; // Start B value
+    let sum = 104; // Start Code B value
     for (let i = 0; i < text.length; i++) {
-        const charCode = text.charCodeAt(i) - 32;
-        sum += charCode * (i + 1);
+        let val = text.charCodeAt(i) - 32;
+        if (val < 0 || val > 95) val = 0; // Replace non-standard characters with space
+        sum += val * (i + 1);
     }
-    const checksumIndex = sum % 103;
-    const charList = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
-    return code128Table[charList[checksumIndex]];
+    return sum % 103;
 }
 
 function genBarcode() {
@@ -46,24 +44,35 @@ function genBarcode() {
     const barWidth = parseInt(barWidthSelect.value);
     const barHeight = parseInt(barHeightInput.value);
     
-    let binaryString = START_B;
+    // 1. Build binary string: Start B (Index 104)
+    let binaryString = widthsToBinary(CODE128_PATTERNS[104]);
+    
+    // 2. Data
     for (const char of text) {
-        binaryString += code128Table[char] || code128Table[' '];
+        let val = char.charCodeAt(0) - 32;
+        if (val < 0 || val > 95) val = 0; 
+        binaryString += widthsToBinary(CODE128_PATTERNS[val]);
     }
-    binaryString += calculateChecksum(text);
-    binaryString += STOP;
+    
+    // 3. Modulo 103 Checksum
+    const checksumIndex = calculateChecksum(text);
+    binaryString += widthsToBinary(CODE128_PATTERNS[checksumIndex]);
+    
+    // 4. Stop Character (Index 106)
+    binaryString += widthsToBinary(CODE128_PATTERNS[106]);
 
+    // Canvas Settings
     const ctx = canvas.getContext("2d");
     const totalWidth = binaryString.length * barWidth;
     
     canvas.width = totalWidth + 40;
     canvas.height = barHeight + 40;
 
-    // Background
+    // Canvas Background
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Bars
+    // Draw Bars
     ctx.fillStyle = "#000000";
     let x = 20;
     for (const bit of binaryString) {
@@ -73,9 +82,10 @@ function genBarcode() {
         x += barWidth;
     }
 
-    // Text
+    // Draw Text Label
     ctx.font = "14px JetBrains Mono, monospace";
     ctx.textAlign = "center";
+    ctx.fillStyle = "#000000"; 
     ctx.fillText(text, canvas.width / 2, canvas.height - 10);
 }
 
@@ -91,10 +101,12 @@ function initTheme() {
     if (!themeToggleBtn) return;
     const icon = themeToggleBtn.querySelector('ion-icon');
     const savedTheme = localStorage.getItem('fossarium-theme');
+    
     if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
         document.documentElement.classList.add('light-theme');
         if (icon) icon.setAttribute('name', 'moon-outline');
     }
+    
     themeToggleBtn.addEventListener('click', () => {
         document.documentElement.classList.toggle('light-theme');
         const isLight = document.documentElement.classList.contains('light-theme');
@@ -103,10 +115,12 @@ function initTheme() {
     });
 }
 
+// Event Listeners
 input.addEventListener("input", genBarcode);
 barWidthSelect.addEventListener("change", genBarcode);
 barHeightInput.addEventListener("input", genBarcode);
 downloadBtn.addEventListener("click", downloadBarcode);
 
+// Initialize tool
 initTheme();
 genBarcode();
