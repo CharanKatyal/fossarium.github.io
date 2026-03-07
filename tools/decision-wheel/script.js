@@ -62,6 +62,31 @@ const resultBox = document.getElementById("result-box");
 const resultText = document.getElementById("result");
 const optionsInput = document.getElementById("options");
 
+const modalOverlay = document.getElementById('modal-overlay');
+const modalOk = document.getElementById('modal-ok');
+const modalIcon = document.querySelector('.modal-icon');
+const modalTitle = document.querySelector('.modal-card h2');
+const modalMessage = document.querySelector('.modal-card p');
+
+function showModal(icon, title, message) {
+    modalIcon.setAttribute('name', icon);
+    modalTitle.textContent = title;
+    modalMessage.textContent = message;
+    modalOverlay.style.display = 'flex';
+    setTimeout(() => {
+        modalOverlay.classList.remove('hidden');
+    }, 10);
+}
+
+function hideModal() {
+    modalOverlay.classList.add('hidden');
+    setTimeout(() => {
+        modalOverlay.style.display = 'none';
+    }, 300);
+}
+
+modalOk.addEventListener('click', hideModal);
+
 function getOptions() {
     return optionsInput.value.trim().split("\n").filter(Boolean);
 }
@@ -70,7 +95,7 @@ spinBtn.addEventListener("click", () => {
     if (spinning) return;
     const opts = getOptions();
     if (opts.length < 2) {
-        alert("Please enter at least 2 options.");
+        showModal("alert-circle-outline", "Invalid Options", "Please enter at least 2 options.");
         return;
     }
     

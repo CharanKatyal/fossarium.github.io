@@ -10,6 +10,31 @@ const headerRowCheckbox = document.getElementById('header-row');
 const previewSection = document.getElementById('preview-section');
 const previewTable = document.getElementById('preview-table');
 
+const modalOverlay = document.getElementById('modal-overlay');
+const modalOk = document.getElementById('modal-ok');
+const modalIcon = document.querySelector('.modal-icon');
+const modalTitle = document.querySelector('.modal-card h2');
+const modalMessage = document.querySelector('.modal-card p');
+
+function showModal(icon, title, message) {
+    modalIcon.setAttribute('name', icon);
+    modalTitle.textContent = title;
+    modalMessage.textContent = message;
+    modalOverlay.style.display = 'flex';
+    setTimeout(() => {
+        modalOverlay.classList.remove('hidden');
+    }, 10);
+}
+
+function hideModal() {
+    modalOverlay.classList.add('hidden');
+    setTimeout(() => {
+        modalOverlay.style.display = 'none';
+    }, 300);
+}
+
+modalOk.addEventListener('click', hideModal);
+
 function parseCSV(text) {
     const lines = [];
     let currentRow = [];
@@ -121,7 +146,7 @@ fetchBtn.addEventListener('click', async () => {
         csvInput.value = text;
         convert();
     } catch (e) {
-        alert('Error fetching URL: ' + e.message);
+        showModal('alert-circle-outline', 'Error', 'Error fetching URL: ' + e.message);
     } finally {
         fetchBtn.disabled = false;
         icon.setAttribute('name', 'arrow-forward-outline');
@@ -136,7 +161,7 @@ pasteBtn.addEventListener('click', async () => {
         csvInput.value = text;
         convert();
     } catch (err) {
-        alert('Failed to read clipboard. Please use Ctrl+V directly.');
+        showModal('clipboard-outline', 'Clipboard Error', 'Failed to read clipboard. Please use Ctrl+V directly.');
     }
 });
 
