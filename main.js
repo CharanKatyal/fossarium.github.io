@@ -1,7 +1,5 @@
 function initSearch() {
     const searchInput = document.getElementById('searchInput');
-    const itemCards = document.querySelectorAll('.item-card');
-
     if (!searchInput) return;
 
     // Focus search on 'Ctrl+K' or '/'
@@ -14,6 +12,7 @@ function initSearch() {
 
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase().trim();
+        const itemCards = document.querySelectorAll('.item-card');
 
         itemCards.forEach(card => {
             const title = card.getAttribute('data-title').toLowerCase();
