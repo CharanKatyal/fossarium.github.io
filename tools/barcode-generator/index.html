@@ -37,7 +37,8 @@
             <div class="input-section">
                 <div class="field">
                     <label for="input">Data to Encode</label>
-                    <input type="text" id="input" placeholder="Enter text or numbers..." value="SPECTRUM-2026">
+                    <input type="text" id="input" placeholder="Enter text or numbers..." value="FOSSarium">
+                    <div id="error-msg" class="error-message"></div>
                 </div>
                 
                 <div class="options-grid">
@@ -57,7 +58,7 @@
                 </div>
             </div>
 
-            <div class="barcode-preview-area">
+            <div class="barcode-preview-area" id="preview-area">
                 <div class="barcode-container" id="barcode-container">
                     <canvas id="canvas"></canvas>
                 </div>

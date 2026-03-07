@@ -6,6 +6,7 @@
     --card-border: rgba(255, 255, 255, 0.05);
     --hover-bg: rgba(33, 38, 45, 0.7);
     --accent-color: #58a6ff;
+    --error-color: #ff7b72;
 }
 
 :root.light-theme {
@@ -16,6 +17,7 @@
     --card-border: rgba(0, 0, 0, 0.08);
     --hover-bg: rgba(240, 244, 248, 0.9);
     --accent-color: #0056b3;
+    --error-color: #cf222e;
 }
 
 body {
@@ -75,6 +77,14 @@ body {
     flex-direction: column;
     gap: 25px;
     margin-bottom: 35px;
+}
+
+.error-message {
+    color: var(--error-color);
+    font-size: 0.85rem;
+    margin-top: 8px;
+    font-weight: 600;
+    min-height: 1.2rem;
 }
 
 .options-grid {
@@ -145,6 +155,11 @@ input[type="range"]::-webkit-slider-thumb {
     gap: 25px;
     padding-top: 25px;
     border-top: 1px solid var(--card-border);
+}
+
+/* Hide preview area when hidden class is present */
+.barcode-preview-area.hidden {
+    display: none;
 }
 
 .barcode-container {

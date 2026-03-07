@@ -1,5 +1,7 @@
 const input = document.getElementById("input");
 const canvas = document.getElementById("canvas");
+const errorDisplay = document.getElementById("error-msg");
+const previewArea = document.getElementById("preview-area");
 const barWidthSelect = document.getElementById("bar-width");
 const barHeightInput = document.getElementById("bar-height");
 const downloadBtn = document.getElementById("download-png");
@@ -21,7 +23,7 @@ const CODE128_PATTERNS = [
 
 function widthsToBinary(widths) {
     let binary = '';
-    let isBlack = true; // Every character starts with a black bar
+    let isBlack = true;
     for (let i = 0; i < widths.length; i++) {
         binary += (isBlack ? '1' : '0').repeat(parseInt(widths[i]));
         isBlack = !isBlack;
@@ -33,94 +35,85 @@ function calculateChecksum(text) {
     let sum = 104; // Start Code B value
     for (let i = 0; i < text.length; i++) {
         let val = text.charCodeAt(i) - 32;
-        if (val < 0 || val > 95) val = 0; // Replace non-standard characters with space
         sum += val * (i + 1);
     }
     return sum % 103;
 }
 
 function genBarcode() {
-    const text = input.value || " ";
+    const text = input.value;
+    errorDisplay.textContent = "";
+    previewArea.classList.remove("hidden");
+
+    // VALIDATION: Check for unsupported characters (Non-ASCII or Control Codes)
+    for (let i = 0; i < text.length; i++) {
+        const code = text.charCodeAt(i);
+        if (code < 32 || code > 126) {
+            errorDisplay.textContent = `Error: Character "${text[i]}" is not supported in Code 128.`;
+            previewArea.classList.add("hidden");
+            return;
+        }
+    }
+
+    if (text.length === 0) {
+        previewArea.classList.add("hidden");
+        return;
+    }
+
     const barWidth = parseInt(barWidthSelect.value);
     const barHeight = parseInt(barHeightInput.value);
     
-    // 1. Build binary string: Start B (Index 104)
-    let binaryString = widthsToBinary(CODE128_PATTERNS[104]);
+    let binaryString = widthsToBinary(CODE128_PATTERNS[104]); // Start
     
-    // 2. Data
     for (const char of text) {
-        let val = char.charCodeAt(0) - 32;
-        if (val < 0 || val > 95) val = 0; 
-        binaryString += widthsToBinary(CODE128_PATTERNS[val]);
+        binaryString += widthsToBinary(CODE128_PATTERNS[char.charCodeAt(0) - 32]);
     }
     
-    // 3. Modulo 103 Checksum
-    const checksumIndex = calculateChecksum(text);
-    binaryString += widthsToBinary(CODE128_PATTERNS[checksumIndex]);
-    
-    // 4. Stop Character (Index 106)
-    binaryString += widthsToBinary(CODE128_PATTERNS[106]);
+    binaryString += widthsToBinary(CODE128_PATTERNS[calculateChecksum(text)]); // Checksum
+    binaryString += widthsToBinary(CODE128_PATTERNS[106]); // Stop
 
-    // Canvas Settings
     const ctx = canvas.getContext("2d");
     const totalWidth = binaryString.length * barWidth;
-    
     canvas.width = totalWidth + 40;
     canvas.height = barHeight + 40;
 
-    // Canvas Background
     ctx.fillStyle = "#ffffff";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Draw Bars
     ctx.fillStyle = "#000000";
     let x = 20;
     for (const bit of binaryString) {
-        if (bit === '1') {
-            ctx.fillRect(x, 10, barWidth, barHeight);
-        }
+        if (bit === '1') ctx.fillRect(x, 10, barWidth, barHeight);
         x += barWidth;
     }
 
-    // Draw Text Label
     ctx.font = "14px JetBrains Mono, monospace";
     ctx.textAlign = "center";
-    ctx.fillStyle = "#000000"; 
     ctx.fillText(text, canvas.width / 2, canvas.height - 10);
 }
 
+// Same logic as before for theme and downloads
 function downloadBarcode() {
     const link = document.createElement('a');
-    link.download = `barcode-${input.value || 'data'}.png`;
+    link.download = `barcode-${input.value}.png`;
     link.href = canvas.toDataURL();
     link.click();
 }
 
 function initTheme() {
     const themeToggleBtn = document.getElementById('theme-toggle');
-    if (!themeToggleBtn) return;
     const icon = themeToggleBtn.querySelector('ion-icon');
-    const savedTheme = localStorage.getItem('fossarium-theme');
-    
-    if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
-        document.documentElement.classList.add('light-theme');
-        if (icon) icon.setAttribute('name', 'moon-outline');
-    }
-    
     themeToggleBtn.addEventListener('click', () => {
         document.documentElement.classList.toggle('light-theme');
         const isLight = document.documentElement.classList.contains('light-theme');
         localStorage.setItem('fossarium-theme', isLight ? 'light' : 'dark');
-        if (icon) icon.setAttribute('name', isLight ? 'moon-outline' : 'sunny-outline');
+        icon.setAttribute('name', isLight ? 'moon-outline' : 'sunny-outline');
     });
 }
 
-// Event Listeners
 input.addEventListener("input", genBarcode);
 barWidthSelect.addEventListener("change", genBarcode);
 barHeightInput.addEventListener("input", genBarcode);
 downloadBtn.addEventListener("click", downloadBarcode);
 
-// Initialize tool
 initTheme();
 genBarcode();
