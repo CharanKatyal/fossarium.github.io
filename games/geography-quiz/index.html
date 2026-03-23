@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geography Quiz - FOSSarium</title>
+    <meta name="description" content="Test your knowledge of world geography!">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Ionicons -->
+    <script type="module" src="../../assets/icons/ionicons.esm.js"></script>
+    <script nomodule src="../../assets/icons/ionicons.js"></script>
+</head>
+
+<body>
+    <script>const s = localStorage.getItem('fossarium-theme'); if (s === 'light' || (!s && window.matchMedia('(prefers-color-scheme: light)').matches)) document.documentElement.classList.add('light-theme');</script>
+    <div class="app-container" id="game-root">
+        <div class="game-header">
+            <h1>World Quiz</h1>
+            <div class="header-actions">
+                <button class="icon-btn" id="theme-toggle" title="Toggle Theme" aria-label="Toggle Theme">
+                    <ion-icon name="sunny-outline"></ion-icon>
+                </button>
+                <button class="icon-btn" id="help-btn" title="How to Play" aria-label="Help">?</button>
+            </div>
+        </div>
+        <div class="stats-bar">
+            <div class="stat">
+                <span class="stat-label">Score</span>
+                <span class="stat-value" id="score">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Streak</span>
+                <span class="stat-value" id="streak">0</span>
+            </div>
+        </div>
+        <div class="quiz-card">
+            <div class="question-category" id="category">Capitals</div>
+            <h2 class="question" id="question">What is the capital of France?</h2>
+            <div class="answers" id="answers"></div>
+        </div>
+        <div class="feedback" id="feedback"></div>
+        <button class="action-btn primary" id="next-btn" style="display:none;">Next Question →</button>
+        <div class="overlay hidden" id="help-overlay">
+            <div class="overlay-card">
+                <h2>How to Play</h2>
+                <ul>
+                    <li>Answer geography questions about countries, capitals, flags, and landmarks.</li>
+                    <li>Choose the correct answer from 4 options.</li>
+                    <li>Build streaks for bonus points!</li>
+                    <li>Learn something new with each question.</li>
+                </ul>
+                <button class="action-btn primary" id="close-help-btn">Got It</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
