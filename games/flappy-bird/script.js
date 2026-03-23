@@ -6,19 +6,28 @@
     const msgEl = document.getElementById('msg');
     const gameoverOverlay = document.getElementById('gameover-overlay');
     const helpOverlay = document.getElementById('help-overlay');
-    const isLight = () => document.documentElement.classList.contains('light-theme');
 
     const W = 320, H = 480;
-    canvas.width = W; canvas.height = H;
-    const PIPE_W = 45, GAP = 130, GRAVITY = 0.4, FLAP = -7, PIPE_SPEED = 2.5;
+    canvas.width = W;
+    canvas.height = H;
+    const PIPE_W = 52, GAP = 140, GRAVITY = 0.5, FLAP = -7.5, PIPE_SPEED = 2.8;
+    
     let best = parseInt(localStorage.getItem('fossarium-flappy-best') || '0');
     bestEl.textContent = best;
 
     let bird, pipes, score, running, started, frame;
 
+    function isLight() {
+        return document.documentElement.classList.contains('light-theme');
+    }
+
     function init() {
-        bird = { x: 60, y: H / 2, vy: 0, r: 14 };
-        pipes = []; score = 0; running = false; started = false; frame = 0;
+        bird = { x: 70, y: H / 2, vy: 0, r: 16 };
+        pipes = [];
+        score = 0;
+        running = false;
+        started = false;
+        frame = 0;
         gameoverOverlay.classList.add('hidden');
         msgEl.textContent = 'Click or Space to Flap';
         scoreEl.textContent = 0;
@@ -26,13 +35,17 @@
     }
 
     function flap() {
-        if (!started) { started = true; running = true; loop(); }
+        if (!started) {
+            started = true;
+            running = true;
+            loop();
+        }
         if (running) bird.vy = FLAP;
         msgEl.textContent = '';
     }
 
     function spawnPipe() {
-        const minY = 80, maxY = H - GAP - 80;
+        const minY = 70, maxY = H - GAP - 70;
         const topH = minY + Math.random() * (maxY - minY);
         pipes.push({ x: W + 10, topH, scored: false });
     }
@@ -41,11 +54,14 @@
         // Sky gradient
         const grad = ctx.createLinearGradient(0, 0, 0, H);
         if (isLight()) {
-            grad.addColorStop(0, '#87CEEB'); grad.addColorStop(1, '#e8ecf2');
+            grad.addColorStop(0, '#87CEEB');
+            grad.addColorStop(1, '#e8ecf2');
         } else {
-            grad.addColorStop(0, '#0a0e28'); grad.addColorStop(1, '#1a1040');
+            grad.addColorStop(0, '#0a0e28');
+            grad.addColorStop(1, '#1a1040');
         }
-        ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, W, H);
 
         // Ground
         ctx.fillStyle = isLight() ? '#8B7355' : '#2a1a4a';
@@ -77,18 +93,30 @@
         ctx.rotate(angle);
         // Body
         ctx.fillStyle = '#ffa502';
-        ctx.beginPath(); ctx.arc(0, 0, bird.r, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath();
+        ctx.arc(0, 0, bird.r, 0, Math.PI * 2);
+        ctx.fill();
         // Eye
         ctx.fillStyle = '#fff';
-        ctx.beginPath(); ctx.arc(6, -4, 5, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath();
+        ctx.arc(6, -4, 5, 0, Math.PI * 2);
+        ctx.fill();
         ctx.fillStyle = '#111';
-        ctx.beginPath(); ctx.arc(7, -4, 2.5, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath();
+        ctx.arc(7, -4, 2.5, 0, Math.PI * 2);
+        ctx.fill();
         // Beak
         ctx.fillStyle = '#ff4757';
-        ctx.beginPath(); ctx.moveTo(bird.r, -2); ctx.lineTo(bird.r + 8, 2); ctx.lineTo(bird.r, 5); ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(bird.r, -2);
+        ctx.lineTo(bird.r + 8, 2);
+        ctx.lineTo(bird.r, 5);
+        ctx.fill();
         // Wing
         ctx.fillStyle = '#ffdd59';
-        ctx.beginPath(); ctx.ellipse(-4, 4, 8, 5, -0.3, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(-4, 4, 8, 5, -0.3, 0, Math.PI * 2);
+        ctx.fill();
         ctx.restore();
     }
 
@@ -98,25 +126,30 @@
         bird.y += bird.vy;
 
         // Spawn pipes
-        if (frame % 90 === 0) spawnPipe();
+        if (frame % 85 === 0) spawnPipe();
 
         // Move pipes
         pipes.forEach(p => {
             p.x -= PIPE_SPEED;
             // Score
             if (!p.scored && p.x + PIPE_W < bird.x) {
-                p.scored = true; score++;
+                p.scored = true;
+                score++;
                 scoreEl.textContent = score;
             }
         });
         pipes = pipes.filter(p => p.x + PIPE_W > -10);
 
         // Collision
-        if (bird.y + bird.r > H - 22 || bird.y - bird.r < 0) { gameOver(); return; }
+        if (bird.y + bird.r > H - 22 || bird.y - bird.r < 0) {
+            gameOver();
+            return;
+        }
         for (const p of pipes) {
             if (bird.x + bird.r > p.x && bird.x - bird.r < p.x + PIPE_W) {
                 if (bird.y - bird.r < p.topH || bird.y + bird.r > p.topH + GAP) {
-                    gameOver(); return;
+                    gameOver();
+                    return;
                 }
             }
         }
@@ -141,9 +174,13 @@
         requestAnimationFrame(loop);
     }
 
+    // Event listeners
     canvas.parentElement.addEventListener('click', flap);
     document.addEventListener('keydown', e => {
-        if (e.code === 'Space' || e.key === 'ArrowUp') { e.preventDefault(); flap(); }
+        if (e.code === 'Space' || e.key === 'ArrowUp') {
+            e.preventDefault();
+            flap();
+        }
     });
 
     document.getElementById('play-again-btn').addEventListener('click', init);
@@ -151,9 +188,27 @@
     document.getElementById('close-help-btn').addEventListener('click', () => helpOverlay.classList.add('hidden'));
     helpOverlay.addEventListener('click', e => { if (e.target === helpOverlay) helpOverlay.classList.add('hidden'); });
     gameoverOverlay.addEventListener('click', e => { if (e.target === gameoverOverlay) gameoverOverlay.classList.add('hidden'); });
-    document.getElementById('fullscreen-btn').addEventListener('click', () => {
-        const el = document.getElementById('game-root');
-        if (!document.fullscreenElement) el.requestFullscreen().catch(() => {}); else document.exitFullscreen();
+
+    // Theme toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = themeToggleBtn.querySelector('ion-icon');
+    const savedTheme = localStorage.getItem('fossarium-theme');
+
+    if (savedTheme === 'light') {
+        document.documentElement.classList.add('light-theme');
+        themeIcon.setAttribute('name', 'moon-outline');
+    } else if (savedTheme === 'dark') {
+        themeIcon.setAttribute('name', 'sunny-outline');
+    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.classList.add('light-theme');
+        themeIcon.setAttribute('name', 'moon-outline');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        document.documentElement.classList.toggle('light-theme');
+        const isLight = document.documentElement.classList.contains('light-theme');
+        localStorage.setItem('fossarium-theme', isLight ? 'light' : 'dark');
+        themeIcon.setAttribute('name', isLight ? 'moon-outline' : 'sunny-outline');
     });
 
     init();
