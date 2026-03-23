@@ -34,6 +34,54 @@
                 <input type="range" id="speed" min="1" max="60" value="30">
             </div>
         </div>
+
+        <div class="patterns-section">
+            <label class="section-label">📋 Load Pattern:</label>
+            <select id="pattern-select" class="pattern-select">
+                <optgroup label="🟢 Still Lifes (Static)">
+                    <option value="block">Block</option>
+                    <option value="beehive">Beehive</option>
+                    <option value="loaf">Loaf</option>
+                    <option value="boat">Boat</option>
+                    <option value="tub">Tub</option>
+                    <option value="snake">Snake</option>
+                    <option value="eater">Eater 1</option>
+                </optgroup>
+                <optgroup label="🔵 Oscillators (Periodic)">
+                    <option value="blinker">Blinker (Period 2)</option>
+                    <option value="toad">Toad (Period 2)</option>
+                    <option value="beacon">Beacon (Period 2)</option>
+                    <option value="pulsar">Pulsar (Period 3)</option>
+                    <option value="clock">Clock (Period 2)</option>
+                    <option value="pentadecathlon">Pentadecathlon (Period 15)</option>
+                    <option value="figure8">Figure Eight (Period 8)</option>
+                </optgroup>
+                <optgroup label="🚀 Spaceships (Moving)">
+                    <option value="glider">Glider</option>
+                    <option value="lwss">Lightweight Spaceship (LWSS)</option>
+                    <option value="mwss">Middleweight Spaceship (MWSS)</option>
+                    <option value="hwss">Heavyweight Spaceship (HWSS)</option>
+                    <option value="copperhead">Copperhead</option>
+                    <option value="gemini">Gemini</option>
+                </optgroup>
+                <optgroup label="⏳ Methuselahs (Long-lived)">
+                    <option value="rpentomino">R-pentomino</option>
+                    <option value="acorn">Acorn</option>
+                    <option value="diehard">Diehard</option>
+                    <option value="bunnies">Bunnies</option>
+                    <option value="century">Century</option>
+                </optgroup>
+                <optgroup label="🔫 Infinite Growth & Engines">
+                    <option value="gospergun">Gosper Glider Gun</option>
+                    <option value="simkingun">Simkin Glider Gun</option>
+                    <option value="puffer">Puffer Train</option>
+                    <option value="spacefiller">Spacefiller</option>
+                    <option value="breeder">Breeder</option>
+                </optgroup>
+            </select>
+            <button class="control-btn" id="load-pattern-btn">Load Pattern</button>
+        </div>
+
         <div class="stats-bar">
             <div class="stat">
                 <span class="stat-label">Generation</span>
