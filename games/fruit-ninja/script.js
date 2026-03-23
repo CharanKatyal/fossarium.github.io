@@ -15,7 +15,7 @@
     let best = parseInt(localStorage.getItem('fossarium-fruitninja-best') || '0');
     bestEl.textContent = best;
 
-    let items, slashTrail, score, lives, frame, running, started, particles;
+    let items, slashTrail, score, lives, frame, running, started, particles, lastSliceTime = 0;
 
     function isLight() {
         return document.documentElement.classList.contains('light-theme');
@@ -30,6 +30,7 @@
         frame = 0;
         running = false;
         started = false;
+        lastSliceTime = 0;
         gameoverOverlay.classList.add('hidden');
         scoreEl.textContent = 0;
         livesEl.textContent = '❤❤❤';
@@ -38,15 +39,16 @@
     }
 
     function spawnItem() {
-        const isBomb = Math.random() < 0.15;
-        const x = 40 + Math.random() * (W - 80);
+        const isBomb = Math.random() < 0.10; // Reduced from 0.15 to 0.10 (10% bombs)
+        // Spawn from center area to prevent fruits going outside edges
+        const x = 80 + Math.random() * (W - 160);
         items.push({
             emoji: isBomb ? '💣' : FRUITS[Math.floor(Math.random() * FRUITS.length)],
             bomb: isBomb,
             x,
             y: H + 20,
-            vx: (Math.random() - 0.5) * 3,
-            vy: -(8 + Math.random() * 4),
+            vx: (Math.random() - 0.5) * 2,  // Reduced horizontal velocity
+            vy: -(8 + Math.random() * 3),   // Reduced vertical velocity range
             r: 22,
             sliced: false,
             missed: false
@@ -92,32 +94,34 @@
     function update() {
         frame++;
 
-        // Spawn
-        if (frame % 30 === 0) spawnItem();
-        if (frame % 50 === 0 && Math.random() < 0.4) spawnItem();
+        // Spawn - reduced rate for easier gameplay
+        if (frame % 40 === 0) spawnItem();
+        if (frame % 70 === 0 && Math.random() < 0.3) spawnItem();
 
         // Move items
         items.forEach(item => {
             if (item.sliced) return;
             item.x += item.vx;
             item.y += item.vy;
-            item.vy += 0.18;
+            item.vy += 0.15; // Reduced gravity
+        });
 
-            // Check if item went outside playable area (bottom or sides)
-            const outOfBounds = item.y > H + 30 || item.x < -30 || item.x > W + 30;
-            
-            // Fell off screen without being sliced
-            if (outOfBounds && !item.missed && !item.bomb) {
+        // Check for missed fruits (only at bottom, very lenient)
+        items.forEach(item => {
+            if (item.sliced || item.missed || item.bomb) return;
+            // Only count as missed if it falls way off bottom
+            if (item.y > H + 60) {
                 item.missed = true;
                 lives--;
                 livesEl.textContent = '❤'.repeat(Math.max(0, lives));
                 if (lives <= 0) {
                     gameOver();
-                    return;
                 }
             }
         });
-        items = items.filter(i => i.y < H + 60 && i.x > -60 && i.x < W + 60);
+
+        // Remove sliced items and items way outside screen
+        items = items.filter(i => !i.sliced && i.y < H + 100 && i.x > -100 && i.x < W + 100);
 
         // Particles
         particles.forEach(p => {
@@ -135,9 +139,16 @@
     }
 
     function sliceAt(x, y) {
+        const now = Date.now();
+        if (now - lastSliceTime < 50) return;
+        lastSliceTime = now;
+        
+        let hitSomething = false;
         items.forEach(item => {
             if (item.sliced) return;
-            if (Math.hypot(x - item.x, y - item.y) < item.r + 10) {
+            // Larger hit radius for easier slicing
+            if (Math.hypot(x - item.x, y - item.y) < 35) {
+                hitSomething = true;
                 item.sliced = true;
                 if (item.bomb) {
                     lives--;
@@ -171,6 +182,7 @@
                 }
             }
         });
+        return hitSomething;
     }
 
     function gameOver() {
@@ -215,9 +227,9 @@
         sliceAt(p.x, p.y);
     });
     canvas.addEventListener('mousemove', e => {
-        if (!e.buttons) return;
         const p = getCanvasPos(e);
         slashTrail.push(p);
+        if (slashTrail.length > 8) slashTrail.shift();
         sliceAt(p.x, p.y);
     });
     canvas.addEventListener('mouseup', () => {
@@ -235,6 +247,7 @@
         e.preventDefault();
         const p = getCanvasPos(e);
         slashTrail.push(p);
+        if (slashTrail.length > 8) slashTrail.shift();
         sliceAt(p.x, p.y);
     }, { passive: false });
     canvas.addEventListener('touchend', () => {
