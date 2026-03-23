@@ -129,29 +129,85 @@
         currentPlayer = opponent;
         render();
 
+        // Trigger bot move after render completes
         if (gameMode === 'bot' && currentPlayer === 'white') {
-            setTimeout(botMove, 500);
+            setTimeout(() => botMove(), 600);
         }
     }
 
     function botMove() {
-        if (gameOver) return;
-
-        // Simple bot: find valid moves and pick randomly
-        const validMoves = [];
-        for (let row = 0; row < SIZE; row++) {
-            for (let col = 0; col < SIZE; col++) {
-                if (!board[row][col]) validMoves.push([row, col]);
+        if (gameOver || gameMode !== 'bot') return;
+        if (currentPlayer !== 'white') return;
+        
+        const botColor = 'white';
+        const opponent = 'black';
+        
+        // Count stones on board
+        let stoneCount = 0;
+        const emptySpots = [];
+        for (let r = 0; r < SIZE; r++) {
+            for (let c = 0; c < SIZE; c++) {
+                if (board[r][c]) stoneCount++;
+                else emptySpots.push([r, c]);
             }
         }
-
-        if (validMoves.length === 0) {
-            pass();
+        
+        if (emptySpots.length === 0) { pass(); return; }
+        
+        // Early game: just play near center
+        if (stoneCount < 6) {
+            const center = Math.floor(SIZE / 2);
+            const spots = emptySpots.filter(([r, c]) => 
+                Math.abs(r - center) <= 2 && Math.abs(c - center) <= 2
+            );
+            const spot = spots.length > 0 ? spots[0] : emptySpots[0];
+            placeBotStone(spot[0], spot[1], botColor, opponent);
             return;
         }
-
-        const [row, col] = validMoves[Math.floor(Math.random() * validMoves.length)];
-        placeStone(row, col);
+        
+        // Mid/Late game: find valid move
+        for (let i = 0; i < emptySpots.length; i++) {
+            const [row, col] = emptySpots[i];
+            board[row][col] = botColor;
+            
+            let canCapture = false;
+            [[0,1],[0,-1],[1,0],[-1,0]].forEach(([dr, dc]) => {
+                const nr = row + dr, nc = col + dc;
+                if (nr >= 0 && nr < SIZE && nc >= 0 && nc < SIZE && board[nr][nc] === opponent) {
+                    if (getLiberties(getGroup(nr, nc, opponent)) === 0) canCapture = true;
+                }
+            });
+            
+            const liberties = getLiberties(getGroup(row, col, botColor));
+            board[row][col] = null;
+            
+            if (liberties > 0 || canCapture) {
+                placeBotStone(row, col, botColor, opponent);
+                return;
+            }
+        }
+        
+        pass();
+    }
+    
+    function placeBotStone(row, col, botColor, opponent) {
+        board[row][col] = botColor;
+        
+        let captured = 0;
+        [[0,1],[0,-1],[1,0],[-1,0]].forEach(([dr, dc]) => {
+            const nr = row + dr, nc = col + dc;
+            if (nr >= 0 && nr < SIZE && nc >= 0 && nc < SIZE && board[nr][nc] === opponent) {
+                const grp = getGroup(nr, nc, opponent);
+                if (getLiberties(grp) === 0) {
+                    grp.forEach(([gr, gc]) => { board[gr][gc] = null; captured++; });
+                }
+            }
+        });
+        
+        captures.white += captured;
+        passCount = 0;
+        currentPlayer = 'black';
+        render();
     }
 
     function pass() {
