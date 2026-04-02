@@ -34,9 +34,9 @@ h1 { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 800; margin: 0; color: 
 .grid { display: grid; grid-template-columns: repeat(8, 40px); grid-template-rows: repeat(8, 40px); gap: 2px; background: var(--card-border); padding: 4px; border-radius: 8px; }
 .cell { width: 40px; height: 40px; background: var(--card-bg); border-radius: 4px; transition: background .2s; }
 .cell.filled { box-shadow: inset 0 0 10px rgba(0,0,0,0.3); }
-.pieces { display: flex; justify-content: center; gap: 20px; min-height: 80px; }
-.piece { display: grid; gap: 2px; cursor: grab; touch-action: none; }
-.piece-cell { width: 25px; height: 25px; border-radius: 3px; }
+.pieces { display: flex; justify-content: center; gap: 20px; min-height: 80px; align-items: center; }
+.piece { display: grid; cursor: grab; touch-action: none; }
+.piece-cell { width: 28px; height: 28px; border-radius: 4px; margin: 1px; }
 .piece-cell.filled { box-shadow: inset 0 0 8px rgba(0,0,0,0.3); }
 .piece.dragging { opacity: 0.5; }
 .action-btn { width: 100%; padding: 14px; border: none; border-radius: 12px; font-weight: 700; font-family: 'Inter', sans-serif; font-size: 1rem; cursor: pointer; transition: transform .2s; }
