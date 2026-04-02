@@ -12,165 +12,272 @@
     canvas.height = H * 2;
     ctx.scale(2, 2);
 
-    let helicopter, caves, score, best, running, thrusting, frame, gems;
+    let helicopter, walls, score, best, running, thrusting, distance, speed;
     best = parseInt(localStorage.getItem('fossarium-helicopter-best') || '0');
     bestEl.textContent = best;
 
     function init() {
-        helicopter = { x: 80, y: H / 2, vy: 0, width: 40, height: 20 };
-        caves = [];
-        gems = [];
+        helicopter = { x: 100, y: H / 2, vy: 0, width: 50, height: 24 };
+        walls = [];
         score = 0;
+        distance = 0;
+        speed = 4;
         running = false;
         thrusting = false;
-        frame = 0;
         gameoverOverlay.classList.add('hidden');
         msgEl.textContent = 'Hold Click or Space to Fly';
         scoreEl.textContent = 0;
-        // Pre-generate caves with x positions
-        for (let i = 0; i < 10; i++) {
-            caves.push({
-                x: i * 100,
-                top: 40 + Math.random() * 50,
-                bottom: H - 50 - Math.random() * 50
+        
+        // Create initial walls - spread across screen width
+        for (let i = 0; i < 20; i++) {
+            walls.push({
+                x: i * 100 - 100,
+                topHeight: 30 + Math.random() * 30,
+                bottomHeight: 30 + Math.random() * 30
             });
         }
         draw();
     }
 
     function thrust() {
-        helicopter.vy -= 0.4;
+        helicopter.vy -= 0.6;
     }
 
-    function spawnCave() {
-        const last = caves[caves.length - 1];
-        const gapChange = (Math.random() - 0.5) * 30;
-        const newTop = Math.max(20, Math.min(H - 100, last.top + gapChange));
-        const newBottom = Math.max(newTop + 100, Math.min(H - 20, last.bottom + gapChange));
-        const caveX = last.x + 100;
-        caves.push({ x: caveX, top: newTop, bottom: newBottom });
+    function spawnWall() {
+        const lastWall = walls[walls.length - 1];
+        const gapChange = (Math.random() - 0.5) * 15;
+        const newTop = Math.max(25, Math.min(70, lastWall.topHeight + gapChange));
+        const newBottom = Math.max(25, Math.min(70, lastWall.bottomHeight + gapChange));
         
-        if (Math.random() < 0.3) {
-            gems.push({ 
-                x: caveX + 50, 
-                y: newTop + (newBottom - newTop) / 2, 
-                collected: false 
-            });
-        }
+        walls.push({
+            x: lastWall.x + 100,
+            topHeight: newTop,
+            bottomHeight: newBottom
+        });
     }
 
     function draw() {
         const isLight = document.documentElement.classList.contains('light-theme');
         
-        // Background
-        ctx.fillStyle = isLight ? '#1a1a2e' : '#0a0e18';
+        // Sky gradient
+        const skyGrad = ctx.createLinearGradient(0, 0, 0, H);
+        if (isLight) {
+            skyGrad.addColorStop(0, '#34495e');
+            skyGrad.addColorStop(1, '#1a1a2e');
+        } else {
+            skyGrad.addColorStop(0, '#0a0e18');
+            skyGrad.addColorStop(1, '#1a0a2e');
+        }
+        ctx.fillStyle = skyGrad;
         ctx.fillRect(0, 0, W, H);
 
-        // Caves - scroll left based on frame
-        ctx.fillStyle = isLight ? '#2d3436' : '#1a1a2e';
-        caves.forEach(cave => {
-            const drawX = cave.x - frame * 3;
-            ctx.fillRect(drawX, 0, 102, cave.top);
-            ctx.fillRect(drawX, cave.bottom, 102, H - cave.bottom);
+        // Draw walls
+        ctx.fillStyle = isLight ? '#34495e' : '#2d1b4e';
+        ctx.strokeStyle = isLight ? '#5d6d7e' : '#4a3b5e';
+        ctx.lineWidth = 8;
+        
+        walls.forEach(wall => {
+            const drawX = wall.x - distance;
+            
+            // Only skip if completely off screen
+            if (drawX < -120 || drawX > W + 10) return;
+            
+            const w = 110; // Wall width with overlap
+            
+            // Top wall
+            ctx.beginPath();
+            ctx.moveTo(drawX, 0);
+            ctx.lineTo(drawX + w, 0);
+            ctx.lineTo(drawX + w, wall.topHeight);
+            ctx.quadraticCurveTo(drawX + w/2, wall.topHeight + 12, drawX, wall.topHeight);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            
+            // Bottom wall
+            ctx.beginPath();
+            ctx.moveTo(drawX, H);
+            ctx.lineTo(drawX + w, H);
+            ctx.lineTo(drawX + w, H - wall.bottomHeight);
+            ctx.quadraticCurveTo(drawX + w/2, H - wall.bottomHeight - 12, drawX, H - wall.bottomHeight);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
         });
 
-        // Gems - scroll with caves
-        gems.forEach(gem => {
-            if (gem.collected) return;
-            const drawX = gem.x - frame * 3;
-            if (drawX < -20) return;
-            ctx.fillStyle = '#2ed573';
-            ctx.beginPath();
-            ctx.arc(drawX, gem.y, 8, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.fillStyle = '#7bed9f';
-            ctx.beginPath();
-            ctx.arc(drawX - 2, gem.y - 2, 3, 0, Math.PI * 2);
-            ctx.fill();
-        });
+        drawHelicopter(isLight);
 
-        // Helicopter
-        const hx = helicopter.x;
-        const hy = helicopter.y;
-        
-        // Body
-        ctx.fillStyle = '#ff6b81';
-        ctx.fillRect(hx, hy, helicopter.width, helicopter.height);
-        
-        // Tail
-        ctx.fillRect(hx - 20, hy + 5, 20, 8);
-        
-        // Rotor
-        ctx.fillStyle = '#a55eea';
-        const rotorOffset = Math.sin(frame * 0.5) * 10;
-        ctx.fillRect(hx + 10 - rotorOffset, hy - 8, 20 + rotorOffset * 2, 4);
-        
-        // Cockpit
-        ctx.fillStyle = isLight ? '#dfe6e9' : '#636e72';
-        ctx.beginPath();
-        ctx.arc(hx + 30, hy + 10, 12, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Flame
-        if (thrusting && running) {
-            ctx.fillStyle = '#ffa502';
+        // Speed lines
+        ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+        ctx.lineWidth = 2;
+        for (let i = 0; i < 8; i++) {
+            const lineX = ((distance) + i * 120) % W;
             ctx.beginPath();
-            ctx.moveTo(hx - 20, hy + 9);
-            ctx.lineTo(hx - 35 - Math.random() * 10, hy + 13);
-            ctx.lineTo(hx - 20, hy + 17);
-            ctx.fill();
+            ctx.moveTo(lineX, 40 + i * 35);
+            ctx.lineTo(lineX - 40, 40 + i * 35);
+            ctx.stroke();
         }
     }
 
-    function update() {
-        frame++;
+    function drawHelicopter(isLight) {
+        const hx = helicopter.x;
+        const hy = helicopter.y;
+        const w = helicopter.width;
+        const h = helicopter.height;
         
+        // Shadow
+        ctx.fillStyle = 'rgba(0,0,0,0.2)';
+        ctx.beginPath();
+        ctx.ellipse(hx + w/2, hy + h + 8, w/2, 6, 0, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Tail
+        ctx.fillStyle = '#e74c3c';
+        ctx.beginPath();
+        ctx.moveTo(hx + 10, hy + h/2);
+        ctx.quadraticCurveTo(hx - 20, hy + h/2, hx - 35, hy + h/2 + 5);
+        ctx.lineTo(hx - 35, hy + h/2 + 12);
+        ctx.quadraticCurveTo(hx - 20, hy + h/2 + 8, hx + 10, hy + h/2 + 8);
+        ctx.closePath();
+        ctx.fill();
+        
+        // Tail fin
+        ctx.fillStyle = '#c0392b';
+        ctx.beginPath();
+        ctx.moveTo(hx - 35, hy + h/2 + 5);
+        ctx.lineTo(hx - 45, hy + h/2);
+        ctx.lineTo(hx - 35, hy + h/2 + 15);
+        ctx.closePath();
+        ctx.fill();
+        
+        // Body
+        const bodyGrad = ctx.createLinearGradient(hx, hy, hx + w, hy + h);
+        bodyGrad.addColorStop(0, '#ff6b81');
+        bodyGrad.addColorStop(1, '#e74c3c');
+        ctx.fillStyle = bodyGrad;
+        ctx.beginPath();
+        ctx.ellipse(hx + w/2, hy + h/2, w/2 + 5, h/2 + 3, 0, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Cockpit
+        const cockpitGrad = ctx.createRadialGradient(hx + w - 15, hy + 8, 2, hx + w - 15, hy + 8, 18);
+        cockpitGrad.addColorStop(0, isLight ? '#74b9ff' : '#0984e3');
+        cockpitGrad.addColorStop(1, isLight ? '#a29bfe' : '#6c5ce7');
+        ctx.fillStyle = cockpitGrad;
+        ctx.beginPath();
+        ctx.arc(hx + w - 12, hy + 10, 16, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Highlight
+        ctx.fillStyle = 'rgba(255,255,255,0.4)';
+        ctx.beginPath();
+        ctx.arc(hx + w - 16, hy + 6, 6, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Rotor mast
+        ctx.fillStyle = '#636e72';
+        ctx.fillRect(hx + w/2 - 2, hy - 15, 4, 18);
+        
+        // Rotor
+        const rotorAngle = Math.sin(distance * 0.08) * 12;
+        ctx.fillStyle = '#a55eea';
+        ctx.beginPath();
+        ctx.roundRect(hx + w/2 - rotorAngle - 15, hy - 18, rotorAngle * 2 + 30, 6, 3);
+        ctx.fill();
+        
+        // Hub
+        ctx.fillStyle = '#8854d0';
+        ctx.beginPath();
+        ctx.arc(hx + w/2, hy - 15, 6, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Flame
+        if (thrusting && running) {
+            const flameLen = 20 + Math.random() * 15;
+            const flameGrad = ctx.createLinearGradient(hx - 35, hy + h/2 + 8, hx - 35 - flameLen, hy + h/2 + 8);
+            flameGrad.addColorStop(0, '#f39c12');
+            flameGrad.addColorStop(0.5, '#e74c3c');
+            flameGrad.addColorStop(1, 'rgba(231,76,60,0)');
+            ctx.fillStyle = flameGrad;
+            ctx.beginPath();
+            ctx.moveTo(hx - 35, hy + h/2 + 5);
+            ctx.lineTo(hx - 35 - flameLen, hy + h/2 + 10);
+            ctx.lineTo(hx - 35, hy + h/2 + 15);
+            ctx.closePath();
+            ctx.fill();
+        }
+        
+        // Skids
+        ctx.strokeStyle = '#636e72';
+        ctx.lineWidth = 3;
+        ctx.lineCap = 'round';
+        ctx.beginPath();
+        ctx.moveTo(hx + 15, hy + h + 5);
+        ctx.lineTo(hx + 15, hy + h + 12);
+        ctx.lineTo(hx + w - 10, hy + h + 12);
+        ctx.lineTo(hx + w - 10, hy + h + 5);
+        ctx.stroke();
+    }
+
+    function update() {
         if (thrusting) thrust();
         
-        helicopter.vy += 0.2; // Gravity
+        helicopter.vy += 0.25;
         helicopter.y += helicopter.vy;
 
-        // Spawn caves
-        if (frame % 30 === 0) spawnCave();
+        // Move forward
+        distance += speed;
 
-        // Check collisions - helicopter is at x:80, check against cave at that position
-        const heliScreenX = helicopter.x;
-        caves.forEach(cave => {
-            const caveScreenX = cave.x - frame * 3;
-            // Check if helicopter is within this cave's horizontal area
-            if (heliScreenX + 20 > caveScreenX && heliScreenX - 20 < caveScreenX + 102) {
-                if (helicopter.y < cave.top || helicopter.y + helicopter.height > cave.bottom) {
-                    gameOver();
-                }
-            }
-        });
-
-        if (helicopter.y < 0 || helicopter.y + helicopter.height > H) {
-            gameOver();
-            return;
+        // Spawn new walls when needed
+        const lastWall = walls[walls.length - 1];
+        if (lastWall.x - distance < W + 100) {
+            spawnWall();
         }
 
-        // Collect gems
-        gems.forEach(gem => {
-            if (gem.collected) return;
-            const gemScreenX = gem.x - frame * 3;
-            const dist = Math.hypot(gemScreenX - helicopter.x - 20, gem.y - helicopter.y - 10);
-            if (dist < 25) {
-                gem.collected = true;
-                score += 5;
-                scoreEl.textContent = score;
+        // Remove old walls
+        if (walls.length > 25 && walls[0].x - distance < -200) {
+            walls.shift();
+        }
+
+        // Collision detection
+        const heliLeft = helicopter.x + 8;
+        const heliRight = helicopter.x + helicopter.width - 8;
+        const heliTop = helicopter.y + 6;
+        const heliBottom = helicopter.y + helicopter.height - 4;
+        
+        for (let i = 0; i < walls.length; i++) {
+            const wall = walls[i];
+            const wallX = wall.x - distance;
+            
+            // Skip far walls
+            if (wallX > heliRight + 20 || wallX < heliLeft - 120) continue;
+            
+            // Check collision
+            if (heliRight > wallX && heliLeft < wallX + 110) {
+                if (heliTop < wall.topHeight - 3 || heliBottom > H - wall.bottomHeight + 3) {
+                    gameOver();
+                    return;
+                }
             }
-        });
+        }
 
-        // Remove off-screen caves and gems
-        caves = caves.filter(c => c.x - frame * 3 < W + 150);
-        gems = gems.filter(g => !g.collected && g.x - frame * 3 > -50);
+        // Boundaries
+        if (helicopter.y < 0) {
+            helicopter.y = 0;
+            helicopter.vy = 0;
+        }
+        if (helicopter.y + helicopter.height > H) {
+            helicopter.y = H - helicopter.height;
+            helicopter.vy = 0;
+        }
 
-        // Score based on distance traveled (frames survived)
-        const distanceScore = Math.floor(frame / 10);
-        if (distanceScore > score) {
-            score = distanceScore;
-            scoreEl.textContent = score;
+        // Score based on distance
+        score = Math.floor(distance / 10);
+        scoreEl.textContent = score;
+
+        // Speed up
+        if (distance % 900 === 0 && speed < 10) {
+            speed += 0.4;
         }
 
         draw();
@@ -205,14 +312,28 @@
     canvas.addEventListener('mouseup', () => { thrusting = false; });
     canvas.addEventListener('mouseleave', () => { thrusting = false; });
     
-    canvas.addEventListener('touchstart', e => { e.preventDefault(); thrusting = true; startGame(); }, { passive: false });
-    canvas.addEventListener('touchend', e => { e.preventDefault(); thrusting = false; });
+    canvas.addEventListener('touchstart', e => { 
+        e.preventDefault(); 
+        thrusting = true; 
+        startGame(); 
+    }, { passive: false });
+    canvas.addEventListener('touchend', e => { 
+        e.preventDefault(); 
+        thrusting = false; 
+    });
 
     document.addEventListener('keydown', e => {
-        if (e.code === 'Space') { e.preventDefault(); thrusting = true; startGame(); }
+        if (e.code === 'Space') { 
+            e.preventDefault(); 
+            thrusting = true; 
+            startGame(); 
+        }
     });
     document.addEventListener('keyup', e => {
-        if (e.code === 'Space') { e.preventDefault(); thrusting = false; }
+        if (e.code === 'Space') { 
+            e.preventDefault(); 
+            thrusting = false; 
+        }
     });
 
     document.getElementById('play-again-btn').addEventListener('click', init);
